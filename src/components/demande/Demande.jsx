@@ -1,10 +1,10 @@
-import React from "react";
+import React from "react"
 import Logo from "../assets/Logo.png"
 import './Demande.css'
 import { MdEmail } from "react-icons/md"
 import { RiLockPasswordLine } from "react-icons/ri"
 import { RiAccountBoxFill } from "react-icons/ri"
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
 
 const Demande = () => {
 

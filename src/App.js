@@ -1,20 +1,10 @@
-import { routes } from "./routes";
-import { BrowserRouter,Navigate,Route,Routes } from "react-router-dom";
+import Dashboard from "./components/dashboard/Dashboard";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        {
-          routes.map((routes,index) => 
-            <Route 
-              key= { "routes" + index }
-              path= { routes.path }
-              element= { routes.element }
-            />
-        )}
-      </Routes>
-    </BrowserRouter>
+    <div>
+        <Dashboard></Dashboard>
+    </div>
   );
 }
 
