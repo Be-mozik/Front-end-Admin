@@ -3,6 +3,7 @@ import './Login.css'
 import Logo from '../assets/Logo.png'
 import { MdEmail } from "react-icons/md"
 import { RiLockPasswordFill } from "react-icons/ri"
+import { Link } from "react-router-dom"
 
 const Login = () => {
     return (
@@ -25,7 +26,7 @@ const Login = () => {
             <div className="submit-container">
                 <div className="submit">Se connecter</div>
             </div>
-            <div className="demande">Envoyer une demande <span>ici</span></div>
+            <div className="demande">Envoyer une demande <Link to="/demande"><span>ici</span></Link></div>
         </div>
     )
 }

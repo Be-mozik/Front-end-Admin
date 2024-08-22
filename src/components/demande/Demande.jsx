@@ -4,6 +4,7 @@ import './Demande.css'
 import { MdEmail } from "react-icons/md"
 import { RiLockPasswordLine } from "react-icons/ri"
 import { RiAccountBoxFill } from "react-icons/ri"
+import { Link } from "react-router-dom";
 
 const Demande = () => {
 
@@ -37,7 +38,7 @@ const Demande = () => {
                     Envoyer une demande
                 </div>
             </div>
-            <div className="connecter">Se connecter <span>ici</span></div>
+            <div className="connecter">Se connecter <Link to="/"><span>ici</span></Link></div>
         </div>
     )
 }
