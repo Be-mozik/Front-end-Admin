@@ -1,11 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
-import LoginSignup from './components/login/LoginSignup';
+import Login from './components/login/Login.jsx';
 
 function App() {
   return (
     <div>
-      <LoginSignup></LoginSignup>
+      <Login></Login>
     </div>
   );
 }
