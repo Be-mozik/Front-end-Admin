@@ -1,7 +1,7 @@
 import Sidebar from "../sidebar/Sidebar";
 import { MdAccountCircle } from "react-icons/md"
 import './Dashboard.css'
-
+import { TableDash } from "./Tabledash";
 
 const Dashboard  = () => {
     return(
@@ -16,28 +16,28 @@ const Dashboard  = () => {
                 </div>
                 <div className="info-ds">
                     <div className="info-d">
-                        Block 1
-                        <span>512</span>
+                        Nombre de client(s)
+                        <span>624</span>
                         <hr />
-                        +3% depuis le mois dernier
+                        +2.5% depuis le mois dernier
                     </div>
                     <div className="info-d">
-                        Block 1
-                        <span>512</span>
+                        C.A Total
+                        <span>175.500 Ar</span>
                         <hr />
-                        +3% depuis le mois dernier
+                        +15% depuis le mois dernier
                     </div>
                     <div className="info-d">
-                        Block 1
-                        <span>512</span>
+                        Nombre d'events
+                        <span>47</span>
                         <hr />
-                        +3% depuis le mois dernier
+                        +0.5% depuis le mois dernier
                     </div>
                     <div className="info-d">
-                        Block 1
+                        Vente de billet total
                         <span>512</span>
                         <hr />
-                        +3% depuis le mois dernier
+                        +1% depuis le mois dernier
                     </div>
                 </div>
                 <div className="graph-d">
@@ -64,9 +64,7 @@ const Dashboard  = () => {
                 <div className="table-d">
                     <div className="titre-table">
                         Liste des événements
-                    </div>
-                    <div className="table-ds">
-                        
+                        <TableDash></TableDash>
                     </div>
                 </div>
             </div>

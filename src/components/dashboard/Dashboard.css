@@ -1,8 +1,10 @@
 .container-d{
     display: block;
-    width: 81%;
+    width: 82%;
     height: 100%;
     margin-left: 17.7%;
+    position: absolute;
+    overflow-y: auto;
 }
 
 .header-d{
@@ -36,21 +38,24 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    width: 300px;
-    height: 147px;
+    width: 273px;
+    height: 120px;
     color: #020202;
     background: #FCFAFA;
     border-radius: 15px;
     font-size: 16px;
-    box-shadow: 0 2px 8px #00639B;
+    box-shadow: 0 2px 8px #acd1e7;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .info-d span{
     font-size: 24px;
     font-weight: 800;
     color: #2ACD30;
-    justify-content: center;
-    margin: 10px;
+    padding-top: 10px;
+    
+
 }
 
 .info-d hr{
@@ -70,20 +75,19 @@
 .graph-ds{
     display: flex;
     flex-direction: column;
-    width: 600px;
+    width: 590px;
     height: 250px;
     border-radius: 20px;
     background: #FCFAFA;
     font-size: 16px;
-    box-shadow: 0 2px 8px #00639B;
+    box-shadow: 0 2px 8px #acd1e7;
     padding: 20px;
 }
 
 .chart{
-    width: 530px;
+    width: 520px;
     height: 200px;
-    border: solid;
-    border-width: 0.1px;
+    border: 0.1px solid grey;
     border-radius: 20px;
     align-items: center;
 }
@@ -105,12 +109,12 @@
 .table-d{
     display: flex;
     flex-direction: column;
-    width: 1120px;
-    height: 800px;
+    width: 1100px;
+    height: auto;
     border-radius: 20px;
     background: #FCFAFA;
     font-size: 16px;
-    box-shadow: 0 2px 8px #00639B;
+    box-shadow: 0 2px 8px #acd1e7;
     margin: 30px;
     padding: 20px;
 
