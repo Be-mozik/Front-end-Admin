@@ -1,8 +1,24 @@
-import React from "react"
+import React, { useState } from "react"
 import './Tabledash.css'
 import { BsFillPencilFill, BsFillTrashFill,BsInfoSquareFill } from "react-icons/bs"
+import ModalDelete from "../Modal/ModalDelete"
+import ModalUpdate from "../Modal/ModalUpdate"
 
 export const TableDash = () => {
+    const [modalOpen,setModalOpen] = useState(false);
+    const [modalUpdate,setModalUpdate] =useState(false);
+
+    const [message,setMessage]=useState("");
+
+    const handleClick = (value) => {
+        setModalOpen(false);
+        setMessage(value);
+    }
+
+    const handleClickUpdate = () =>{
+        setModalUpdate(false);
+    }
+
     return <div className="table-wrapper-d">
         <table className="table-dash">
             <thead>
@@ -27,8 +43,17 @@ export const TableDash = () => {
                     </td>
                     <td>
                         <span className="actions">
-                            <BsFillTrashFill className="deleted"/>
-                            <BsFillPencilFill className="modified"/>
+                            <BsFillTrashFill className="deleted" onClick={() => setModalOpen(true)}/>
+                            {modalOpen && (
+                                <ModalDelete onSubmit={handleClick} onCancel={handleClick} onClose={handleClick}>
+                                    <p>Voulez-vous vraiment supprimer cet événement ?</p>
+                                </ModalDelete>
+                            )}
+                            <BsFillPencilFill className="modified" onClick={() => setModalUpdate(true)}/>
+                            {modalUpdate && (
+                                <ModalUpdate onSubmit={handleClickUpdate} onClose={handleClickUpdate}>
+                                </ModalUpdate>
+                            )}
                         </span>
                     </td>
                     <td>
@@ -48,7 +73,12 @@ export const TableDash = () => {
                     </td>
                     <td>
                         <span className="actions">
-                            <BsFillTrashFill className="deleted"/>
+                            <BsFillTrashFill className="deleted" onClick={() => setModalOpen(true)}/>
+                                {modalOpen && (
+                                    <ModalDelete onSubmit={handleClick} onCancel={handleClick} onClose={handleClick}>
+                                        <p>Voulez-vous vraiment supprimer cet événement ?</p>
+                                    </ModalDelete>
+                                )}
                             <BsFillPencilFill className="modified"/>
                         </span>
                     </td>

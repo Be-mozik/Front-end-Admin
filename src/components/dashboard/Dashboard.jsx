@@ -2,8 +2,16 @@ import Sidebar from "../sidebar/Sidebar";
 import { MdAccountCircle } from "react-icons/md"
 import './Dashboard.css'
 import { TableDash } from "./Tabledash";
+import DropdwnUser from "../dropdown/DropdownUser";
+import { useState } from "react";
 
 const Dashboard  = () => {
+    const [openDrop,setOpenDrop] = useState(false);
+
+    const handleClickDrop = () =>{
+        setOpenDrop(false);
+    }
+
     return(
         <>
             <Sidebar></Sidebar>
@@ -11,7 +19,10 @@ const Dashboard  = () => {
                 <div className="header-d">
                     <div className="titre-d">
                         Dashboard
-                        <MdAccountCircle />
+                        <MdAccountCircle className="user" onClick={() => setOpenDrop(true)}/>
+                        {openDrop && (
+                            <DropdwnUser onCloseDrop={handleClickDrop}></DropdwnUser>
+                        )}
                     </div>
                 </div>
                 <div className="info-ds">

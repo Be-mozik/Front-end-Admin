@@ -1,0 +1,59 @@
+.modal-delete-container{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-delete{
+    background-color: #F5F5F5;
+    border-radius: 20px;
+    padding: 1.5rem;
+    width: 30em;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.modal-delete-footer{
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn{
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-confirm{
+    color: #2ACD30;
+}
+
+.btn-refuser{
+    color: #FF0000;
+}
+
+.modal-delete-header{
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+}
+
+.modal-delete-content{
+    text-align: left;
+    margin-bottom: 20px;
+
+}
+
+.close-modal-delete{
+    cursor: pointer;
+}
+
