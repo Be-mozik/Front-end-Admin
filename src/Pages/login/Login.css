@@ -1,15 +1,21 @@
-.container1{
+body.bg-other {
+    background-color: #00639B;
+    min-height: 100vh;
+  }
+
+.container1-login{
     display: flex;
     flex-direction: column;
     margin: auto;
     margin-top: 150px;
-    width: 450px;
+    width: 30%;
+    height: auto;
     background: #FCFAFA;
     padding-bottom: 30px;
     border-radius: 20px;
 }
 
-.header{
+.header-login{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,13 +28,13 @@
     width: 150px;
 }
 
-.inputs{
+.inputs-login{
     display: flex;
     flex-direction: column;
     gap: 25px;
 }
 
-.input svg{
+.input-login svg{
     margin: 0px 25px;
     max-width: 100%;
     height: auto;
@@ -36,7 +42,7 @@
     color: #797979;
 }
 
-.input{
+.input-login{
     display: flex;
     align-items: center;
     width: 350px;
@@ -48,7 +54,7 @@
 
 }
 
-.input input{
+.input-login input{
     height: 40px;
     width: 350px;
     background: transparent;
@@ -58,12 +64,12 @@
     font-size: 16px;
 }
 
-.submit-container{
+.submit-container-login{
     display: flex;
     margin: 35px auto;
 }
 
-.submit{
+.submit-login{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -78,18 +84,18 @@
     transition: background-color 0.5s ease;
 }
 
-.submit:hover{
+.submit-login:hover{
     background-color: #0056b3;
 }
 
-.demande{
+.demande-login{
     padding-left: 130px;
     margin-top: 10px;
     color: #322F2C;
     font-size: 16px;
 }
 
-.demande span{
+.demande-login span{
     color: #0056b3;
     cursor: pointer;
 }

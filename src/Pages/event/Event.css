@@ -1,0 +1,155 @@
+.container-d{
+    display: block;
+    width: 82%;
+    height: 100%;
+    margin-left: 17.7%;
+    position: absolute;
+    overflow-y: auto;
+}
+
+.header-d{
+    padding: 25px;
+}
+
+.titre-d{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #020202;
+    font-size: 70px;
+    font-weight: 700;
+}
+
+.titre-d svg{
+    max-width: 100%;
+    height: auto;
+    width: 50px;
+    color: #00639B;
+}
+
+.user{
+    cursor: pointer;
+}
+
+.modal-update-event {
+    background-color: #FCFAFA;
+    border-radius: 20px;
+    margin: 30px;
+    padding: 20px;
+    width: 91%;
+    box-shadow: 0 2px 8px #acd1e7;
+}
+
+.modal-update-header {
+    font-size: 18px;
+    color: #020202;
+    font-weight: 700;
+}
+
+.close-modal-update {
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.inputs input,
+.inputs textarea {
+    width: 90%;
+    padding: 0.8rem 1rem;
+    background: #f7f7f7;
+    border-radius: 10px;
+    border: 1px solid #3DBEE9;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.inputs input:focus,
+.inputs textarea:focus {
+    border-color: #0288d1;
+    outline: none;
+}
+
+textarea {
+    resize: none;
+    height: 80px;
+}
+
+.billet,
+.info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon-plus {
+    font-size: 50px;
+    color: #737272;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.icon-plus:hover {
+    color: #01579b;
+}
+
+.icon-moins {
+    font-size: 60px;
+    color: #737272;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.icon-moins:hover {
+    color: #b70303;
+}
+
+.separator{
+    width: 100%;
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin: 5px 0;
+}
+
+.upload-file {
+    background: #e3f2fd;
+    border: 2px dashed #0288d1;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.upload-file:hover {
+    background: #bbdefb;
+}
+
+.btn-btn-valider{
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+}
+
+.btn-valider-update {
+    margin-top: 1.5rem;
+    width: 350px;
+    height: 50px;
+    padding: 0.8rem 1rem;
+    background-color: #EB8218;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-valider-update:hover {
+    background-color: #0277bd;
+}

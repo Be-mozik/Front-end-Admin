@@ -1,10 +1,11 @@
 import './Sidebar.css'
-import Logo from '../assets/Logo.png'
+import Logo from '../../assets/Logo.png'
 import React, { useState } from 'react'
 import { TbLayoutDashboardFilled } from "react-icons/tb"
 import { FaUserLock } from "react-icons/fa6"
 import { BsPersonLinesFill } from "react-icons/bs"
 import { IoCalendarSharp } from "react-icons/io5"
+import { Link } from 'react-router-dom'
 
 const Sidebar = () => {
 
@@ -19,22 +20,30 @@ const Sidebar = () => {
                 <hr />
             </div>
             <div className="liens">
-                <div className="submit">
-                    <TbLayoutDashboardFilled/>
-                    Dashboard
-                </div>
-                <div className="submit">
-                    <FaUserLock />
-                    Permission
-                </div>
-                <div className="submit">
-                    <BsPersonLinesFill />    
-                    Client
-                </div>
-                <div className="submit">
-                    <IoCalendarSharp />
-                    Événement
-                </div>
+                <Link to ="/dashboard">
+                    <div className="submit">
+                        <TbLayoutDashboardFilled/>
+                        Dashboard
+                    </div>
+                </Link>
+                <Link to="/permission">
+                    <div className="submit">
+                        <FaUserLock />
+                        Permission
+                    </div>
+                </Link>
+                <Link to="/client">
+                    <div className="submit">
+                        <BsPersonLinesFill />    
+                        Client
+                    </div>
+                </Link>
+                <Link to="/event">
+                    <div className="submit">
+                        <IoCalendarSharp />
+                        Événement
+                    </div>
+                </Link>
             </div>
         </div>
     )

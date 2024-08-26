@@ -4,11 +4,11 @@ import './Dashboard.css'
 import DropdwnUser from "../../components/dropdown/DropdownUser";
 import { useState } from "react";
 import Table from "../../components/table/Table";
-
 import ModalDelete from "../../components/Modal/ModalDelete"
 import ModalUpdate from "../../components/Modal/ModalUpdate"
 import { BsFillPencilFill, BsFillTrashFill,BsInfoSquareFill } from "react-icons/bs"
 import BlocInfo from "../../components/bloc-info/BlocInfo";
+import { Link } from "react-router-dom";
 
 const Dashboard  = () => {
     const [openDrop,setOpenDrop] = useState(false);
@@ -134,7 +134,9 @@ const Dashboard  = () => {
                                 </td>
                                 <td>
                                     <span className="actions">
-                                        <BsInfoSquareFill className="info"/>
+                                        <Link to="/detailsdash">
+                                            <BsInfoSquareFill className="info"/>
+                                        </Link>
                                     </span>
                                 </td>
                             </tr>
@@ -160,14 +162,15 @@ const Dashboard  = () => {
                                 </td>
                                 <td>
                                     <span className="actions">
-                                        <BsInfoSquareFill className="info"/>
+                                        <Link to="/detailsdash">
+                                            <BsInfoSquareFill className="info"/>
+                                        </Link>
                                     </span>
                                 </td>
                             </tr>
                                 </>
                             }
-                            />
-                    
+                        />
                 </div>
             </div>
         </>

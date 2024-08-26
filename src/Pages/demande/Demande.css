@@ -1,34 +1,35 @@
-.container{
+.container-demande{
     display: flex;
     flex-direction: column;
     margin: auto;
     margin-top: 60px;
-    width: 450px;
+    width: 30%;
+    height: auto;
     background: #FCFAFA;
     padding-bottom: 30px;
     border-radius: 20px;
 }
 
-.header{
+.header-demande{
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
 }
 
-.logo img{
+.logo-demande img{
     max-width: 100%;
     height: auto;
     width: 150px;
 }
 
-.inputs{
+.inputs-demande{
     display: flex;
     flex-direction: column;
     gap: 25px;
 }
 
-.input svg{
+.input-demande svg{
     margin: 0px 25px;
     max-width: 100%;
     height: auto;
@@ -36,7 +37,7 @@
     color: #797979;
 }
 
-.input{
+.input-demande{
     display: flex;
     align-items: center;
     width: 350px;
@@ -47,7 +48,7 @@
     border-radius: 15px;
 }
 
-.input input {
+.input-demande input {
     height: 40px;
     width: 350px;
     background: transparent;
@@ -57,12 +58,12 @@
     font-size: 16px;
 }
 
-.submit-container{
+.submit-container-demande{
     display: flex;
     margin: 35px auto;
 }
 
-.submit{
+.submit-demande{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -77,18 +78,18 @@
     transition: background-color 0.5s ease;
 }
 
-.submit:hover{
+.submit-demande:hover{
     background-color: #0056b3;
 }
 
-.connecter{
+.connecter-demande{
     padding-left: 165px;
     margin-top: 10px;
     color: #322F2C;
     font-size: 16px;
 }
 
-.connecter span{
+.connecter-demande span{
     color: #0056b3;
     cursor: pointer;
 }

@@ -55,7 +55,7 @@
 
 .actions{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 .actions svg{
@@ -73,6 +73,14 @@
     color: #020202;
 }
 
+.accepted{
+    color: #2ACD30;
+}
+
 .info{
+    color: #00639B;
+}
+
+.bag{
     color: #00639B;
 }

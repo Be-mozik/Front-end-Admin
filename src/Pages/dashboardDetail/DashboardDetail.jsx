@@ -4,7 +4,7 @@ import { MdAccountCircle,MdOutlineFileDownload } from "react-icons/md"
 import { useState } from 'react';
 import DropdwnUser from '../../components/dropdown/DropdownUser';
 import BlocInfo from '../../components/bloc-info/BlocInfo';
-import img from '../assets/lol.jpg'
+import img from '../../assets/lol.jpg'
 
 
 const DashboardDetail = () => {
