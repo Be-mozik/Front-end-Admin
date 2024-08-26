@@ -26,6 +26,7 @@ const Dashboard  = () => {
         setModalOpen(false);
         setMessage(value);
     }
+    
 
     const handleClickUpdate = () =>{
         setModalUpdate(false);
