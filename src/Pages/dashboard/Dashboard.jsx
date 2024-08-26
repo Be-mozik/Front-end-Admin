@@ -1,14 +1,14 @@
-import Sidebar from "../sidebar/Sidebar";
+import Sidebar from "../../components/sidebar/Sidebar";
 import { MdAccountCircle } from "react-icons/md"
 import './Dashboard.css'
-import DropdwnUser from "../dropdown/DropdownUser";
+import DropdwnUser from "../../components/dropdown/DropdownUser";
 import { useState } from "react";
-import Table from "../table/Table";
+import Table from "../../components/table/Table";
 
-import ModalDelete from "../Modal/ModalDelete"
-import ModalUpdate from "../Modal/ModalUpdate"
+import ModalDelete from "../../components/Modal/ModalDelete"
+import ModalUpdate from "../../components/Modal/ModalUpdate"
 import { BsFillPencilFill, BsFillTrashFill,BsInfoSquareFill } from "react-icons/bs"
-import BlocInfo from "../bloc-info/BlocInfo";
+import BlocInfo from "../../components/bloc-info/BlocInfo";
 
 const Dashboard  = () => {
     const [openDrop,setOpenDrop] = useState(false);
@@ -94,6 +94,7 @@ const Dashboard  = () => {
                 <div className="table-d">
                     <div className="titre-table">
                         Liste des événements
+                    </div>
                         <Table 
                             childrenHead={
                             <tr>
@@ -166,7 +167,7 @@ const Dashboard  = () => {
                                 </>
                             }
                             />
-                    </div>
+                    
                 </div>
             </div>
         </>

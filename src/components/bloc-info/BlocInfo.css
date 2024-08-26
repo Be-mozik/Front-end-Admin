@@ -29,3 +29,12 @@
     border: 0;
     width: 75%;
 }
+
+.info-d svg{
+    color: #FF0000;
+    max-width: 100%;
+    height: auto;
+    width: 25px;
+    cursor: pointer;
+
+}

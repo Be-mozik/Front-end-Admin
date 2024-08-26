@@ -47,8 +47,8 @@
 .graph-ds{
     display: flex;
     flex-direction: column;
-    width: 590px;
-    height: 250px;
+    width: 100%;
+    height: 250px; /* Ataoo 100% */
     border-radius: 20px;
     background: #FCFAFA;
     font-size: 16px;
@@ -57,8 +57,8 @@
 }
 
 .chart{
-    width: 520px;
-    height: 200px;
+    width: 100%;
+    height: 100%;
     border: 0.1px solid grey;
     border-radius: 20px;
     align-items: center;
@@ -78,10 +78,16 @@
     border-radius: 5px;
 }
 
+.titre-table{
+    font-size: 18px;
+    color: #020202;
+    font-weight: 700;
+}
+
 .table-d{
     display: flex;
     flex-direction: column;
-    width: 1100px;
+    max-width: 95%;
     height: auto;
     border-radius: 20px;
     background: #FCFAFA;
