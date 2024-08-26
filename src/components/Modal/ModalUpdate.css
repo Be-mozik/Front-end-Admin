@@ -121,11 +121,12 @@ textarea {
     background: #bbdefb;
 }
 
-.btn{
+.btn-btn-valider{
     display: ruby-text;
+    padding-top: 2rem;
 }
 
-.btn-valider {
+.btn-valider-update {
     margin-top: 1.5rem;
     width: 350px;
     height: 50px;
@@ -140,6 +141,6 @@ textarea {
     transition: background-color 0.3s ease;
 }
 
-.btn-valider:hover {
+.btn-valider-update:hover {
     background-color: #0277bd;
 }

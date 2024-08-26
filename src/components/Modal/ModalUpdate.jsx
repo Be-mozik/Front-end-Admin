@@ -84,8 +84,8 @@ const ModalUpdate = ({onSubmit,onClose}) => {
                         <textarea placeholder='Description du show'></textarea>
                         <input type="file" className="upload-file" />
                     </div>
-                    <div className="btn">
-                        <button className='btn-valider' onClick={() => onSubmit()}>
+                    <div className="btn-btn-valider">
+                        <button className='btn-valider-update' onClick={() => onSubmit()}>
                             Valider
                         </button>
                     </div>
