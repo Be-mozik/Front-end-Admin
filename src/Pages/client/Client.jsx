@@ -27,7 +27,7 @@ const Client = () => {
                             )}
                     </div>
                 </div>
-                <div className="table-d">
+                <div className="table-d-client">
                     <div className="titre-table">
                         Liste des clients
                     </div>

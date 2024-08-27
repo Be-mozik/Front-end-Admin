@@ -44,7 +44,7 @@ const Permission = () => {
                             )}
                         </div>
                 </div>
-                <div className="table-d">
+                <div className="table-d-permission">
                     <div className="titre-table">
                         Liste des demandes
                     </div>
@@ -107,7 +107,7 @@ const Permission = () => {
                         />
                 </div>
 
-                <div className="table-d">
+                <div className="table-d-permission">
                     <div className="titre-table">
                         Liste des admins
                     </div>

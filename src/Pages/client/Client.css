@@ -37,7 +37,7 @@
     font-weight: 700;
 }
 
-.table-d{
+.table-d-client{
     display: flex;
     flex-direction: column;
     max-width: 95%;
@@ -48,6 +48,7 @@
     box-shadow: 0 2px 8px #acd1e7;
     margin: 30px;
     padding: 20px;
+    margin-top: 0;
 }
 
 

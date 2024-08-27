@@ -65,7 +65,7 @@ const Event = () => {
                     </div>
                 </div>
                 <div className="modal-update-event">
-                <div className="modal-update-header">
+                <div className="modal-update-header-event">
                     <h4>Ajouter un événement</h4>
                 </div>
                 <div className="modal-update-content">
