@@ -69,8 +69,13 @@ body{
 }
 
 .submit:hover{
-    background: #ffffff42;
+    background: #bdbaba66;
 }
+
+.link-custom.active .submit {
+    background: #EB8218;
+}
+
 
 .link-custom{
     text-decoration: none;
