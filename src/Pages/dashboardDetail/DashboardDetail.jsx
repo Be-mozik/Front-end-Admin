@@ -2,9 +2,12 @@ import './DashboardDetail.css'
 import Sidebar from '../../components/sidebar/Sidebar'
 import { MdAccountCircle,MdOutlineFileDownload } from "react-icons/md"
 import { useState } from 'react';
-import DropdwnUser from '../../components/dropdown/DropdownUser';
-import BlocInfo from '../../components/bloc-info/BlocInfo';
+import DropdwnUser from '../../components/dropdown/DropdownUser'
+import BlocInfo from '../../components/bloc-info/BlocInfo'
 import img from '../../assets/lol.jpg'
+import ModalDelete from '../../components/Modal/ModalDelete'
+import ModalUpdate from '../../components/Modal/ModalUpdate'
+import { BsFillPencilFill, BsFillTrashFill } from "react-icons/bs"
 
 
 const DashboardDetail = () => {
@@ -12,6 +15,17 @@ const DashboardDetail = () => {
 
     const handleClickDrop = () =>{
         setOpenDrop(false);
+    }
+
+    const [modalOpen,setModalOpen] = useState(false);
+    const [modalUpdate,setModalUpdate] =useState(false);
+
+    const handleClick = (value) => {
+        setModalOpen(false);
+    }
+
+    const handleClickUpdate = () =>{
+        setModalUpdate(false);
     }
 
     return(
@@ -81,7 +95,25 @@ const DashboardDetail = () => {
                                 <span>Statut</span> 
                                 <span>A venir / Passé</span>
                             </div>
-
+                            <div className="event-detail">
+                                <span>Plannifier par</span> 
+                                <span>Utilisateur 1</span>
+                            </div>
+                            <div className="actions-detail">
+                                <span className="actions-detail">
+                                        <BsFillTrashFill className="deleted" onClick={() => setModalOpen(true)}/>
+                                        {modalOpen && (
+                                            <ModalDelete onSubmit={handleClick} onCancel={handleClick} onClose={handleClick}>
+                                                <p>Voulez-vous vraiment supprimer cet événement ?</p>
+                                            </ModalDelete>
+                                        )}
+                                        <BsFillPencilFill className="modified" onClick={() => setModalUpdate(true)}/>
+                                        {modalUpdate && (
+                                            <ModalUpdate onSubmit={handleClickUpdate} onClose={handleClickUpdate}>
+                                            </ModalUpdate>
+                                        )}
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>

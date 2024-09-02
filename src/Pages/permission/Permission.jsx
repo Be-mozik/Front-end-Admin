@@ -67,7 +67,7 @@ const Permission = () => {
                                     <span className="actions">
                                     <BsPersonFillCheck className="accepted" onClick={() => setModalOpen(true)}/>
                                         {modalOpen && (
-                                            <ModalDelete onSubmit={handleClick} onClose={handleClick}>
+                                            <ModalDelete onSubmit={handleClick} onCancel={handleClick} onClose={handleClick}>
                                                 <p>Voulez-vous vraiment accepter cette demande ?</p>
                                             </ModalDelete>
                                         )}
@@ -89,7 +89,7 @@ const Permission = () => {
                                         <span className="actions">
                                             <BsPersonFillCheck className="accepted" onClick={() => setModalOpen(true)}/>
                                                 {modalOpen && (
-                                                    <ModalDelete onSubmit={handleClick} onClose={handleClick}>
+                                                    <ModalDelete onSubmit={handleClick} onCancel={handleClick} onClose={handleClick}>
                                                         <p>Voulez-vous vraiment accepter cette demande ?</p>
                                                     </ModalDelete>
                                                 )}

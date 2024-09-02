@@ -116,5 +116,17 @@
 
 }
 
+.actions-detail{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    max-width: 100%;
+    height: auto;
+    width: 70px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+
 
 

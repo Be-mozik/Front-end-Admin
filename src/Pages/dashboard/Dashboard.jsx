@@ -4,9 +4,7 @@ import './Dashboard.css'
 import DropdwnUser from "../../components/dropdown/DropdownUser";
 import { useState } from "react";
 import Table from "../../components/table/Table";
-import ModalDelete from "../../components/Modal/ModalDelete"
-import ModalUpdate from "../../components/Modal/ModalUpdate"
-import { BsFillPencilFill, BsFillTrashFill,BsInfoSquareFill } from "react-icons/bs"
+import { BsInfoSquareFill } from "react-icons/bs"
 import BlocInfo from "../../components/bloc-info/BlocInfo";
 import { Link } from "react-router-dom";
 
@@ -15,21 +13,6 @@ const Dashboard  = () => {
 
     const handleClickDrop = () =>{
         setOpenDrop(false);
-    }
-
-    const [modalOpen,setModalOpen] = useState(false);
-    const [modalUpdate,setModalUpdate] =useState(false);
-
-    const [message,setMessage]=useState("");
-
-    const handleClick = (value) => {
-        setModalOpen(false);
-        setMessage(value);
-    }
-    
-
-    const handleClickUpdate = () =>{
-        setModalUpdate(false);
     }
 
     return(
@@ -104,12 +87,11 @@ const Dashboard  = () => {
                                 <th>Date</th>
                                 <th>Lieu</th>
                                 <th>Statut</th>
-                                <th>Actions</th>
                                 <th>Details</th>
                             </tr>
                             }
                             childrenBody={
-                                <>
+                        <>
                                <tr>
                                 <td>1</td>
                                 <td>Event 01</td>
@@ -120,28 +102,12 @@ const Dashboard  = () => {
                                 </td>
                                 <td>
                                     <span className="actions">
-                                        <BsFillTrashFill className="deleted" onClick={() => setModalOpen(true)}/>
-                                        {modalOpen && (
-                                            <ModalDelete onSubmit={handleClick} onCancel={handleClick} onClose={handleClick}>
-                                                <p>Voulez-vous vraiment supprimer cet événement ?</p>
-                                            </ModalDelete>
-                                        )}
-                                        <BsFillPencilFill className="modified" onClick={() => setModalUpdate(true)}/>
-                                        {modalUpdate && (
-                                            <ModalUpdate onSubmit={handleClickUpdate} onClose={handleClickUpdate}>
-                                            </ModalUpdate>
-                                        )}
-                                    </span>
-                                </td>
-                                <td>
-                                    <span className="actions">
                                         <Link to="/detailsdash">
                                             <BsInfoSquareFill className="info"/>
                                         </Link>
                                     </span>
                                 </td>
                             </tr>
-
                             <tr>
                                 <td>2</td>
                                 <td>Event 02</td>
@@ -152,24 +118,13 @@ const Dashboard  = () => {
                                 </td>
                                 <td>
                                     <span className="actions">
-                                        <BsFillTrashFill className="deleted" onClick={() => setModalOpen(true)}/>
-                                            {modalOpen && (
-                                                <ModalDelete onSubmit={handleClick} onCancel={handleClick} onClose={handleClick}>
-                                                    <p>Voulez-vous vraiment supprimer cet événement ?</p>
-                                                </ModalDelete>
-                                            )}
-                                        <BsFillPencilFill className="modified"/>
-                                    </span>
-                                </td>
-                                <td>
-                                    <span className="actions">
                                         <Link to="/detailsdash">
                                             <BsInfoSquareFill className="info"/>
                                         </Link>
                                     </span>
                                 </td>
                             </tr>
-                                </>
+                        </>
                             }
                         />
                 </div>
