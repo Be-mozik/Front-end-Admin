@@ -72,3 +72,7 @@ body{
     background: #ffffff42;
 }
 
+.link-custom{
+    text-decoration: none;
+    color: inherit;
+}

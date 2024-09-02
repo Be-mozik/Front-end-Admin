@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import './Login.css'
 import Logo from '../../assets/Logo.png'
 import { MdEmail } from "react-icons/md"
@@ -25,9 +25,9 @@ const Login = () => {
                 </div>
             </div>
             <div className="submit-container-login">
-                <Link to ="/dashboard"><div className="submit-login">Se connecter</div></Link>
+                <Link to ="/dashboard" className="link-custom"><div className="submit-login">Se connecter</div></Link>
             </div>
-            <div className="demande-login">Envoyer une demande <Link to="/demande"><span>ici</span></Link></div>
+            <div className="demande-login">Envoyer une demande <Link to="/demande" className="link-custom"><span>ici</span></Link></div>
         </div>
         </body>
     )

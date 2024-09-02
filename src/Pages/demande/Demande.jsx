@@ -39,7 +39,7 @@ const Demande = () => {
                     Envoyer une demande
                 </div>
             </div>
-            <div className="connecter-demande">Se connecter <Link to="/"><span>ici</span></Link></div>
+            <div className="connecter-demande">Se connecter <Link to="/" className='link-custom'><span>ici</span></Link></div>
         </div>
         </body>
     )

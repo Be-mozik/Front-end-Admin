@@ -93,3 +93,8 @@
     color: #0056b3;
     cursor: pointer;
 }
+
+.link-custom{
+    text-decoration: none;
+    color: inherit;
+}

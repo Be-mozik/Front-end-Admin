@@ -100,5 +100,10 @@ body.bg-other {
     cursor: pointer;
 }
 
+.link-custom{
+    text-decoration: none;
+    color: inherit;
+}
+
 
 

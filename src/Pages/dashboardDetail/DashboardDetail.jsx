@@ -1,12 +1,12 @@
 import './DashboardDetail.css'
 import Sidebar from '../../components/sidebar/Sidebar'
 import { MdAccountCircle,MdOutlineFileDownload } from "react-icons/md"
-import { useState } from 'react';
+import { useState } from 'react'
+import ModalDelete from '../../components/Modal/ModalDelete'
+import ModalUpdate from '../../components/Modal/ModalUpdate'
 import DropdwnUser from '../../components/dropdown/DropdownUser'
 import BlocInfo from '../../components/bloc-info/BlocInfo'
 import img from '../../assets/lol.jpg'
-import ModalDelete from '../../components/Modal/ModalDelete'
-import ModalUpdate from '../../components/Modal/ModalUpdate'
 import { BsFillPencilFill, BsFillTrashFill } from "react-icons/bs"
 
 
@@ -18,9 +18,9 @@ const DashboardDetail = () => {
     }
 
     const [modalOpen,setModalOpen] = useState(false);
-    const [modalUpdate,setModalUpdate] =useState(false);
+    const [modalUpdate,setModalUpdate] = useState(false);
 
-    const handleClick = (value) => {
+    const handleClick = () => {
         setModalOpen(false);
     }
 
@@ -70,7 +70,7 @@ const DashboardDetail = () => {
                         </div>
                         <div className="bloc-event2">
                             <h4>Event</h4>
-                            <p>Plongez dans l'univers envoûtant du Cabaret Étoile Nocturne, un lieu où glamour, mystère et élégance se mêlent pour une expérience inoubliable. Niché au cœur de la ville, ce cabaret vous propose un spectacle éblouissant où danseurs, chanteurs et artistes de cirque vous transportent dans une atmosphère féerique.</p>
+                            <p className='descri'>Plongez dans l'univers envoûtant du Cabaret Étoile Nocturne, un lieu où glamour, mystère et élégance se mêlent pour une expérience inoubliable. Niché au cœur de la ville, ce cabaret vous propose un spectacle éblouissant où danseurs, chanteurs et artistes de cirque vous transportent dans une atmosphère féerique.</p>
                             <div className="event-detail">
                                 <span>Date:</span>
                                 <span>16 Août 2024</span>

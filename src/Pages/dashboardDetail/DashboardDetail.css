@@ -88,7 +88,7 @@
     margin-bottom: 10px;
 }
 
-.bloc-event2 p {
+.descri {
     font-size: 14px;
     color: #4a4a4a;
     margin-bottom: 15px;
@@ -124,8 +124,8 @@
     height: auto;
     width: 70px;
     cursor: pointer;
-    font-size: 20px;
 }
+
 
 
 
