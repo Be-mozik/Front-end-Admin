@@ -57,7 +57,7 @@ const Event = () => {
             <div className="container-d">
                 <div className="header-d">
                     <div className="titre-d">
-                        Dashboard
+                        Événement
                         <MdAccountCircle className="user" onClick={() => setOpenDrop(true)}/>
                         {openDrop && (
                             <DropdwnUser onCloseDrop={handleClickDrop}></DropdwnUser>

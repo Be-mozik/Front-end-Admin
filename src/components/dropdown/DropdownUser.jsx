@@ -7,7 +7,7 @@ const DropdwnUser = ({ onCloseDrop }) => {
         <div className='flex flex-col dropdownUser'>
             <ul className='liste'>
                 <li>User 1</li>
-                <Link to="/">
+                <Link className='link-custom-user' to="/">
                     <li>Se deconnecter</li>
                 </Link>
                 <li onClick={e => onCloseDrop()}>Fermer</li>

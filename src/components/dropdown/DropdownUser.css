@@ -44,12 +44,22 @@
 .liste li:nth-child(2),
 .liste li:nth-child(3) {
     cursor: pointer;
-    border-radius: 8px;
 }
 
-.liste li:nth-child(2):hover,
+
 .liste li:nth-child(3):hover {
-    background-color: #e2e8f0;
-    border-radius: 8px;
+    background: #82878a76;
+    border-radius: 5px;
 }
+
+.link-custom-user{
+    text-decoration: none;
+    color: inherit;
+}
+
+.link-custom-user :hover{
+    background: #82878a76;
+    border-radius: 5px;
+}
+
 
