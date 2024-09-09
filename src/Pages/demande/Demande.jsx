@@ -5,8 +5,11 @@ import { MdEmail } from "react-icons/md"
 import { RiLockPasswordLine } from "react-icons/ri"
 import { RiAccountBoxFill } from "react-icons/ri"
 import { Link } from "react-router-dom"
+import { ToastContainer, toast, Slide  } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const Demande = () => {
+    const notify = () => toast.success("Demande envoyée, vérifiez votre email pour la suite.");
 
     return(
         <body className="bg-other">
@@ -19,7 +22,7 @@ const Demande = () => {
             <div className="inputs-demande">
                 <div className="input-demande">
                     <RiAccountBoxFill />
-                    <input type="text" placeholder="Nom et prénom" name="" id="" />
+                    <input type="text" placeholder="Prénom" name="" id="" />
                 </div>
                 <div className="input-demande">
                     <MdEmail />
@@ -35,9 +38,22 @@ const Demande = () => {
                 </div>
             </div>
             <div className="submit-container-demande">
-                <div className="submit-demande">
+                <div className="submit-demande" onClick={notify}>
                     Envoyer une demande
                 </div>
+                <ToastContainer
+                        position="bottom-right"
+                        autoClose= {20000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                        theme="light"
+                        transition={Slide}
+                    />
             </div>
             <div className="connecter-demande">Se connecter <Link to="/" className='link-custom'><span>ici</span></Link></div>
         </div>
