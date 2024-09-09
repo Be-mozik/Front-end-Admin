@@ -2,7 +2,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import { MdAccountCircle } from "react-icons/md"
 import './Dashboard.css'
 import DropdwnUser from "../../components/dropdown/DropdownUser";
-import { useState } from "react";
+import {  useState } from "react";
 import Table from "../../components/table/Table";
 import { BsInfoSquareFill } from "react-icons/bs"
 import BlocInfo from "../../components/bloc-info/BlocInfo";
@@ -15,6 +15,7 @@ const Dashboard  = () => {
         setOpenDrop(false);
     }
 
+    
     return(
         <>
             <Sidebar></Sidebar>

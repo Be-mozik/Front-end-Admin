@@ -7,6 +7,7 @@ import Table from '../../components/table/Table'
 import { FaBagShopping } from "react-icons/fa6"
 import { Link } from 'react-router-dom'
 
+
 const Client = () => {
     const [openDrop,setOpenDrop] = useState(false);
     

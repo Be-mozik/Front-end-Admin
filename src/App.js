@@ -8,7 +8,7 @@ function App() {
         {
           routes.map((routes,index) => 
             <Route 
-              key= { "routes" + index }
+              key= { "routes -" + index }
               path= { routes.path }
               element= { routes.element }
             />

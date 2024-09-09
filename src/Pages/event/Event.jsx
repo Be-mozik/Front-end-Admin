@@ -51,6 +51,7 @@ const Event = () => {
         setDataInfo(deleteVal);
     }
 
+
     return(
         <>
             <Sidebar></Sidebar>
@@ -74,26 +75,28 @@ const Event = () => {
                         <input type="datetime-local" />
                         <input type="text" placeholder="Lieu de l'événement" />
                         {
-                            dataTarif.map((val,i) =>
-                                <div className="billet">
-                                    <input type="text" name='billet' placeholder="Nom du billet" value={val.billet} onChange={(e)=>handleChangeTarif(e,i)}/>
-                                    <input type="number" name='prix' placeholder="Tarif en ariary" value={val.prix} onChange={(e)=>handleChangeTarif(e,i)}/>
-                                    <BsFillPlusSquareFill className="icon-plus" onClick={handleClickTarif}/>
-                                    <AiFillMinusSquare className='icon-moins' onClick={handleDeleteTarif}/>
+                            dataTarif.map((val, i) => (
+                                <div className="billet" key={i}> {/* Ajoutez la clé ici */}
+                                    <input type="text" name='billet' placeholder="Nom du billet" value={val.billet} onChange={(e) => handleChangeTarif(e, i)} />
+                                    <input type="number" name='prix' placeholder="Tarif en ariary" value={val.prix} onChange={(e) => handleChangeTarif(e, i)} />
+                                    <BsFillPlusSquareFill className="icon-plus" onClick={handleClickTarif} />
+                                    <AiFillMinusSquare className='icon-moins' onClick={handleDeleteTarif} />
                                 </div>
-                            )
+                            ))
                         }
+
                             <hr className='separator'/>
-                        {
-                            dataInfo.map((val,j)=>
-                                <div className="info">
-                                    <input type="number" placeholder="Numéro de téléphone" name='num' value={val.num} onChange={(e)=>handleChangeInfo(e,j)}/>
-                                    <input type="text" placeholder="Nom de la personne" name='nom' value={val.nom} onChange={(e)=>handleChangeInfo(e,j)}/>
-                                    <BsFillPlusSquareFill className="icon-plus" onClick={handleClickInfo}/>
-                                    <AiFillMinusSquare className='icon-moins' onClick={handleDeleteInfo}/>
-                                </div>
-                            )
-                        }
+                            {
+                                dataInfo.map((val, j) => (
+                                    <div className="info" key={j}> {/* Ajoutez la clé ici */}
+                                        <input type="number" placeholder="Numéro de téléphone" name='num' value={val.num} onChange={(e) => handleChangeInfo(e, j)} />
+                                        <input type="text" placeholder="Nom de la personne" name='nom' value={val.nom} onChange={(e) => handleChangeInfo(e, j)} />
+                                        <BsFillPlusSquareFill className="icon-plus" onClick={handleClickInfo} />
+                                        <AiFillMinusSquare className='icon-moins' onClick={handleDeleteInfo} />
+                                    </div>
+                                ))
+                            }
+
                         <textarea placeholder='Description du show'></textarea>
                         <input type="file" className="upload-file" />
                     </div>
