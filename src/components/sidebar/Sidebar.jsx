@@ -1,15 +1,34 @@
 import './Sidebar.css'
 import Logo from '../../assets/Logo.png'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { TbLayoutDashboardFilled } from "react-icons/tb"
 import { FaUserLock } from "react-icons/fa6"
 import { BsPersonLinesFill } from "react-icons/bs"
 import { IoCalendarSharp } from "react-icons/io5"
 import { Link, useLocation } from 'react-router-dom'
+import utilisateurApi from '../../api/utilisateurApi'
 
 const Sidebar = () => {
     const location = useLocation();
     const [activeLink, setActiveLink] = useState(location.pathname);
+    const [user, setUser] =useState(null);
+
+    useEffect(() => {
+        const fetchUserProfile = async () => {
+            try {
+                const tokenName = 'token';
+                const decoded = await utilisateurApi.getProfile(tokenName);
+                if (decoded) {
+                    setUser(decoded);
+                } else {
+                    console.log('Token non trouvé');
+                }
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        fetchUserProfile();
+    }, []);
 
     const handleLinkClick = (path) => {
         setActiveLink(path);
@@ -36,16 +55,18 @@ const Sidebar = () => {
                         Dashboard
                     </div>
                 </Link>
-                <Link 
-                    to="/permission" 
-                    className={`link-custom ${activeLink === '/permission' ? 'active' : ''}`} 
-                    onClick={() => handleLinkClick('/permission')}
-                >
-                    <div className="submit">
-                        <FaUserLock />
-                        Permission
-                    </div>
-                </Link>
+                { user && user.statususer && (
+                    <Link 
+                        to="/permission" 
+                        className={`link-custom ${activeLink === '/permission' ? 'active' : ''}`} 
+                        onClick={() => handleLinkClick('/permission')}
+                    >
+                        <div className="submit">
+                            <FaUserLock />
+                            Permission
+                        </div>
+                    </Link>
+                )}
                 <Link 
                     to="/client" 
                     className={`link-custom ${activeLink === '/client' ? 'active' : ''}`} 

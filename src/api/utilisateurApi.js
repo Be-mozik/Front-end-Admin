@@ -31,6 +31,15 @@ const utilisateurApi = {
         } catch (error) {
             console.error('Erreur lors de la deconnexion: ',error);
         }
+    },
+
+    getUtilisateurs: async () => {
+        try {
+            const utilisateurs = await axios.get(`${userBaseUrl}`);
+            return utilisateurs;
+        } catch (error) {
+            console.error('Erreur lors de la requete: ',error);
+        }
     }
 
 }
