@@ -1,12 +1,16 @@
 import './ModalDelete.css'
 
 const ModalDelete = ({ onSubmit,onCancel,onClose,children }) => {
+
+    const handleOutsideClick = (e) => {
+        if (e.target.className === "modal-delete-container") {
+            onClose("Fermé en cliquant à l'extérieur");
+        }
+    };
+
+
     return(
-        <div className='modal-delete-container' onClick={(e) =>{
-            if(e.target.className==="modal-delete-container"){
-                onClose("midy sisiny");
-            }
-            }}>
+        <div className='modal-delete-container' onClick={handleOutsideClick}>
             <div className="modal-delete">
                 <div className="modal-delete-header">
                     <h4>Confirmation</h4>

@@ -21,9 +21,9 @@ const demandeApi = {
         }
     },
 
-    supprimerDemande: async (data) => {
+    supprimerDemande: async (id) => {
         try {
-            const rep = await axios.post(`${demandeBaseUrl}/supprimer/`,data);
+            const rep = await axios.delete(`${demandeBaseUrl}/supprimer/${id}`);
             return rep.data;
         } catch (error) {
             throw error;

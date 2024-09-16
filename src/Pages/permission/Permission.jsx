@@ -13,52 +13,116 @@ import demandeApi from '../../api/demandeApi'
 
 const Permission = () => {
     const [openDrop,setOpenDrop] = useState(false);
-    const [modalOpen,setModalOpen] = useState(false);
-    const [modalOpen1,setModalOpen1] = useState(false);
-    const [modalOpen2,setModalOpen2] = useState(false);
     const [users, setUsers] = useState([]);
     const [demandes, setDemande] = useState([]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const utilisateurs = await utilisateurApi.getUtilisateurs();
-                setUsers(utilisateurs.data);
-            } catch (error) {
-                console.log('Error: ',error);
-            }
-        };
-        fetchData();
-    },[]);
-    
+    const [modalOpenAccept,setModalOpenAccept] = useState(false);
+    const [modalOpenDelete,setModalOpenDelete] = useState(false);
+    const [modalOpenUser,setModalOpenUser] = useState(false);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const demandes = await demandeApi.getDemandes();
-                setDemande(demandes);
-            } catch (error) {
-                console.log('Error: ',error);
-            }
-        }
-        fetchData();
-    },[]);
-
+    const [message,setMessage] = useState(null);
+    const [error,setError] = useState(null);
 
     const handleClickDrop = () =>{
         setOpenDrop(false);
     }
 
-    const handleClick = (value) => {
-        setModalOpen(false);
+    const fetchDataDemande = async () => {
+        try {
+            const demandes = await demandeApi.getDemandes();
+            setDemande(demandes);
+        } catch (error) {
+            setError(error);
+            console.log('Error: ', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchDataDemande();
+    }, []);
+
+    const fetchDataUser = async () => {
+        try {
+            const utilisateurs = await utilisateurApi.getUtilisateurs();
+            setUsers(utilisateurs.data);
+        } catch (error) {
+            setError(error);
+            console.log('Error: ', error);
+        }
     }
 
-    const handleClick1 = (value) => {
-        setModalOpen1(false);
+    useEffect(() => {
+        fetchDataUser();
+    }, []);
+
+    const OpenAcceptClick = (id) => {
+        setModalOpenAccept(`accept-${id}`);
+    };
+
+    const ApprouverDemande = async (id) => {
+        try {
+            const rep = await utilisateurApi.aproveDemande(id);
+            console.log(rep.success);
+            if(rep){
+                setMessage(rep.success);
+                fetchDataDemande();
+                fetchDataUser();
+                setModalOpenAccept(false);
+            }
+        } catch (error) {
+            setError(`Erreur lors de l'affectation`);
+            setModalOpenAccept(false);
+        }
     }
 
-    const handleClick2 = (value) => {
-        setModalOpen2(false);
+    const CloseAcceptClick = () => {
+        setModalOpenAccept(false);
+    }
+
+    const OpenDeleteClick = (id) => {
+        setModalOpenDelete(`delete-${id}`);
+    }
+
+    const SupprimerDemande = async (id) => {
+        try {
+            const rep = await demandeApi.supprimerDemande(id);
+            if (rep) {
+                setMessage(rep.success);
+                setModalOpenDelete(false);
+                fetchDataDemande();
+            }
+        } catch (error) {
+            console.error('Erreur lors de la suppression:', error);
+            setMessage('Erreur lors de la suppression');
+            setModalOpenDelete(false);
+        }
+    };
+
+    const CloseDeleteClick = () => {
+        setModalOpenDelete(false)
+    }
+
+    const OpenModalUser = (id) => {
+        setModalOpenUser(`user-${id}`);
+    }
+
+    const SupprimerAccess = async (id) => {
+        try {
+            const rep = await utilisateurApi.supprimerAccess(id);
+            if(rep){
+                setMessage(rep.success);
+                setModalOpenUser(false);
+                fetchDataUser();
+            }
+        } catch (error) {
+            console.error('Erreur lors de la suppression:', error);
+            setError('Erreur lors de la suppression');
+            setModalOpenUser(false);
+        }
+    }
+
+    const CloseModalUser = () => {
+        setModalOpenUser(false);
     }
 
     return(
@@ -74,6 +138,16 @@ const Permission = () => {
                             )}
                         </div>
                 </div>
+                { message &&
+                    <div className='container-msg-success'>
+                        <p>{message}</p>
+                    </div>
+                }
+                { error && 
+                    <div className='container-msg-error'>
+                        <p>{error}</p>
+                    </div>
+                }
                 <div className="table-d-permission">
                     <div className="titre-table">
                         Liste des demandes
@@ -90,24 +164,24 @@ const Permission = () => {
                             }
                             childrenBody={
                                 <>
-                                { demandes.map((demandes) => (
-                                    <tr>
-                                        <td>{demandes.iddemande}</td>
-                                        <td>{demandes.prenomdemande}</td>
-                                        <td>{demandes.maildemande}</td>
-                                        <td>{demandes.datedemande}</td>
+                                { demandes.map((demande) => (
+                                    <tr key={demande.iddemande}>
+                                        <td>{demande.iddemande}</td>
+                                        <td>{demande.prenomdemande}</td>
+                                        <td>{demande.maildemande}</td>
+                                        <td>{demande.datedemande}</td>
                                         <td>
                                             <span className="actions">
-                                            <BsPersonFillCheck className="accepted" onClick={() => setModalOpen(true)}/>
-                                                {modalOpen && (
-                                                    <ModalDelete onSubmit={handleClick} onCancel={handleClick} onClose={handleClick}>
-                                                        <p>Voulez-vous vraiment accepter la demande de {demandes.prenomdemande} ?</p>
+                                            <BsPersonFillCheck className="accepted" onClick={() => OpenAcceptClick(demande.iddemande)}/>
+                                                {modalOpenAccept === `accept-${demande.iddemande}` &&(
+                                                    <ModalDelete onSubmit={() => ApprouverDemande(demande.iddemande)} onCancel={CloseAcceptClick} onClose={CloseAcceptClick}>
+                                                        <p>Êtes-vous sûr de vouloir accepter la demande de {demande.prenomdemande} ?</p>
                                                     </ModalDelete>
                                                 )}
-                                                <BsFillTrashFill className="deleted" onClick={() => setModalOpen1(true)}/>
-                                                {modalOpen1 && (
-                                                    <ModalDelete onSubmit={handleClick1} onCancel={handleClick1} onClose={handleClick1}>
-                                                        <p>Voulez-vous vraiment supprimer cette demande ?</p>
+                                                <BsFillTrashFill className="deleted" onClick={() => OpenDeleteClick(demande.iddemande)}/>
+                                                {modalOpenDelete === `delete-${demande.iddemande}` && (
+                                                    <ModalDelete onSubmit={() => SupprimerDemande(demande.iddemande)} onCancel={CloseDeleteClick} onClose={CloseDeleteClick}>
+                                                        <p>Êtes-vous sûr de vouloir supprimer la demande de {demande.prenomdemande} ?</p>
                                                     </ModalDelete>
                                                 )}
                                             </span>
@@ -135,18 +209,18 @@ const Permission = () => {
                             }
                             childrenBody={
                                 <>
-                                { users.map((utilisateurs) =>( 
-                                    <tr>
-                                        <td>{utilisateurs.idutilisateur}</td>
-                                        <td>{utilisateurs.prenomutilisateur}</td>
-                                        <td>{utilisateurs.mailutilisateur}</td>
-                                        <td>{utilisateurs.depuisutilisateur}</td>
+                                { users.map((utilisateur) =>( 
+                                    <tr key={utilisateur.idutilisateur}>
+                                        <td>{utilisateur.idutilisateur}</td>
+                                        <td>{utilisateur.prenomutilisateur}</td>
+                                        <td>{utilisateur.mailutilisateur}</td>
+                                        <td>{utilisateur.depuisutilisateur}</td>
                                         <td>
                                             <span className="actions">
-                                                <BsFillTrashFill className="deleted" onClick={() => setModalOpen2(true)}/>
-                                                {modalOpen2 && (
-                                                    <ModalDelete onSubmit={handleClick2} onCancel={handleClick2} onClose={handleClick2}>
-                                                        <p>Voulez-vous vraiment supprimer l'accés de {utilisateurs.prenomutilisateur} ?</p>
+                                                <BsFillTrashFill className="deleted" onClick={() => OpenModalUser(utilisateur.idutilisateur)}/>
+                                                {modalOpenUser === `user-${utilisateur.idutilisateur}` && (
+                                                    <ModalDelete onSubmit={() => SupprimerAccess(utilisateur.idutilisateur)} onCancel={CloseModalUser} onClose={CloseModalUser}>
+                                                        <p>Êtes-vous sûr de vouloir retirer l'accès de {utilisateur.prenomutilisateur} ?</p>
                                                     </ModalDelete>
                                                 )}
                                             </span>

@@ -34,25 +34,25 @@ const Dashboard  = () => {
                         Nombre de client(s)
                         <span>624</span>
                         <hr />
-                        +2.5% depuis le mois dernier
+                        + 2.5% depuis le mois dernier
                     </BlocInfo>
                     <BlocInfo>
                         C.A Total
                         <span>175.500 Ar</span>
                         <hr />
-                        +15% depuis le mois dernier
+                        + 15% depuis le mois dernier
                     </BlocInfo>
                     <BlocInfo>
                         Nombre d'events
                         <span>47</span>
                         <hr />
-                        +0.5% depuis le mois dernier
+                        + 0.5% depuis le mois dernier
                     </BlocInfo>
                     <BlocInfo>
                         Vente de billet total
                         <span>512</span>
                         <hr />
-                        +1% depuis le mois dernier
+                        + 1% depuis le mois dernier
                     </BlocInfo>
                 </div>
                 <div className="graph-d">

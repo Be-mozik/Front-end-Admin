@@ -40,6 +40,24 @@ const utilisateurApi = {
         } catch (error) {
             console.error('Erreur lors de la requete: ',error);
         }
+    },
+
+    aproveDemande: async (id) => {
+        try {
+            const notif = await axios.get(`${userBaseUrl}/approuver/${id}`);
+            return notif.data;
+        } catch (error) {
+            console.error('Erreur lors de la requete: ',error);
+        }
+    },
+
+    supprimerAccess: async (id) => {
+        try {
+            const rep = await axios.delete(`${userBaseUrl}/supprimer/${id}`);
+            return rep.data;
+        } catch (error) {
+            console.error('Erreur lors de la requete: ',error);
+        }
     }
 
 }

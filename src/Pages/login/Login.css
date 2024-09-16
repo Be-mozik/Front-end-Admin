@@ -96,7 +96,7 @@ body.bg-other {
     justify-content: center;
     align-items: center;
     max-width: 100%;
-    background-color: rgba(255,0,0,0.5);
+    background-color: rgba(255, 0, 0, 0.7);
     border-radius: 15px;
     margin: 20px auto;
     padding: 15px 20px;

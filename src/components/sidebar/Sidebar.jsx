@@ -11,7 +11,15 @@ import utilisateurApi from '../../api/utilisateurApi'
 const Sidebar = () => {
     const location = useLocation();
     const [activeLink, setActiveLink] = useState(location.pathname);
-    const [user, setUser] =useState(null);
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        if (location.pathname === '/Dashboard') {
+            setActiveLink('/dashboard');
+        } else {
+            setActiveLink(location.pathname);
+        }
+    }, [location.pathname]);
 
     useEffect(() => {
         const fetchUserProfile = async () => {
@@ -34,7 +42,7 @@ const Sidebar = () => {
         setActiveLink(path);
     };
 
-    return(
+    return (
         <div className="container">
             <div className="header">
                 <div className="logo">
@@ -55,7 +63,7 @@ const Sidebar = () => {
                         Dashboard
                     </div>
                 </Link>
-                { user && user.statususer && (
+                {user && user.statususer && (
                     <Link 
                         to="/permission" 
                         className={`link-custom ${activeLink === '/permission' ? 'active' : ''}`} 
@@ -89,7 +97,7 @@ const Sidebar = () => {
                 </Link>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Sidebar
+export default Sidebar;
