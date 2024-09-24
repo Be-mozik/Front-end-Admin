@@ -57,8 +57,6 @@ const DashboardDetail = () => {
                 const timePart = parts[1];
                 const formattedDateString = `${datePart[2]}-${datePart[1]}-${datePart[0]}T${timePart}`;
                 const date = new Date(formattedDateString);
-                console.log(event.dateheureevenement);
-                console.log(date);
                 if (!isNaN(date.getTime())) {
                     setFormattedDate(format(date, 'dd-MM-yyyy'));
                     setFormattedTime(format(date, 'HH:mm'));
