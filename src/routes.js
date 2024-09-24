@@ -22,7 +22,7 @@ export const routes = [
         element: <Dashboard />
     },
     {
-        path:"/detailsdash",
+        path:"/detailsdash/:id",
         element: <DashboardDetail />
     },
     {

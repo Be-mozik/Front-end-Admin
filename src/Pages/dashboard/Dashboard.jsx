@@ -2,14 +2,30 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import { MdAccountCircle } from "react-icons/md"
 import './Dashboard.css'
 import DropdwnUser from "../../components/dropdown/DropdownUser";
-import {  useState } from "react";
+import {  useEffect, useState } from "react";
 import Table from "../../components/table/Table";
 import { BsInfoSquareFill } from "react-icons/bs"
 import BlocInfo from "../../components/bloc-info/BlocInfo";
 import { Link } from "react-router-dom";
+import eventApi from "../../api/eventApi";
 
 const Dashboard  = () => {
     const [openDrop,setOpenDrop] = useState(false);
+    const [events,setEvent] = useState([]);
+
+    const fetchDataEvent = async () => {
+        try {
+            const events = await eventApi.getEvents();
+            setEvent(events.data);
+        } catch (error) {
+            console.log('Error: ', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchDataEvent();
+    }, []);
+
 
     const handleClickDrop = () =>{
         setOpenDrop(false);
@@ -92,40 +108,24 @@ const Dashboard  = () => {
                             </tr>
                             }
                             childrenBody={
-                        <>
-                               <tr>
-                                <td>1</td>
-                                <td>Event 01</td>
-                                <td>02/04/24</td>
-                                <td>Maj</td>
-                                <td>
-                                    <span className="label label-venir">A venir</span>
-                                </td>
-                                <td>
-                                    <span className="actions">
-                                        <Link to="/detailsdash">
-                                            <BsInfoSquareFill className="info"/>
-                                        </Link>
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Event 02</td>
-                                <td>01/05/24</td>
-                                <td>Maj</td>
-                                <td>
-                                    <span className="label label-passe">Passé</span>
-                                </td>
-                                <td>
-                                    <span className="actions">
-                                        <Link to="/detailsdash">
-                                            <BsInfoSquareFill className="info"/>
-                                        </Link>
-                                    </span>
-                                </td>
-                            </tr>
-                        </>
+                            <>
+                                { events.map((e)=> (
+                                    <tr key={e.idevenement}>
+                                        <td>{e.idevenement}</td>
+                                        <td>{e.nomevenement}</td>
+                                        <td>{e.dateheureevenement}</td>
+                                        <td>{e.lieuevenement}</td>
+                                        <td>lol</td>
+                                        <td>
+                                            <span className="actions">
+                                                <Link to={`/detailsdash/${e.idevenement}`}>
+                                                    <BsInfoSquareFill className="info"/>
+                                                </Link>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </>
                             }
                         />
                 </div>
