@@ -8,10 +8,12 @@ import { BsInfoSquareFill } from "react-icons/bs"
 import BlocInfo from "../../components/bloc-info/BlocInfo";
 import { Link } from "react-router-dom";
 import eventApi from "../../api/eventApi";
+import { format } from "date-fns";
 
 const Dashboard  = () => {
     const [openDrop,setOpenDrop] = useState(false);
     const [events,setEvent] = useState([]);
+    const [formattedEvents, setFormattedEvents] = useState([]);
 
     const fetchDataEvent = async () => {
         try {
@@ -25,6 +27,34 @@ const Dashboard  = () => {
     useEffect(() => {
         fetchDataEvent();
     }, []);
+
+    useEffect(() => {
+        if (events.length > 0) {
+            const formattedData = events.map((e) => {
+                if (e.dateheureevenement) {
+                    const parts = e.dateheureevenement.split(' ');
+                    if (parts.length === 2) {
+                        const datePart = parts[0].split('-');
+                        const timePart = parts[1];
+                        const formattedDateString = `${datePart[2]}-${datePart[1]}-${datePart[0]}T${timePart}`;
+                        const date = new Date(formattedDateString);
+                        if (!isNaN(date.getTime())) {
+                            return { ...e, formattedDate: format(date, 'dd-MM-yyyy') };
+                        } else {
+                            console.error('Date invalide:', formattedDateString);
+                            return { ...e, formattedDate: 'Date invalide' };
+                        }
+                    } else {
+                        console.error('Format de date inattendu:', e.dateheureevenement);
+                        return { ...e, formattedDate: 'Format de date inattendu' };
+                    }
+                } else {
+                    return { ...e, formattedDate: 'Date manquante' };
+                }
+            });
+            setFormattedEvents(formattedData);
+        }
+    }, [events]);
 
 
     const handleClickDrop = () =>{
@@ -109,13 +139,23 @@ const Dashboard  = () => {
                             }
                             childrenBody={
                             <>
-                                { events.map((e)=> (
+                                { formattedEvents.map((e)=> (
                                     <tr key={e.idevenement}>
                                         <td>{e.idevenement}</td>
                                         <td>{e.nomevenement}</td>
-                                        <td>{e.dateheureevenement}</td>
+                                        <td>{e.formattedDate}</td>
                                         <td>{e.lieuevenement}</td>
-                                        <td>lol</td>
+                                        <td>
+                                            {(() => {
+                                                const parts = e.formattedDate.split('-');
+                                                const isoDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
+                                                return new Date(isoDate) < new Date() ? (
+                                                <span style={{ color: '#FF0000' }}>Passé</span>
+                                                ) : (
+                                                <span style={{ color: '#2ACD30' }}>À venir</span>
+                                                );
+                                            })()}
+                                        </td>
                                         <td>
                                             <span className="actions">
                                                 <Link to={`/detailsdash/${e.idevenement}`}>

@@ -48,7 +48,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 250px; /* Ataoo 100% */
+    height: 250px;
     border-radius: 20px;
     background: #FCFAFA;
     font-size: 16px;
@@ -95,6 +95,5 @@
     box-shadow: 0 2px 8px #acd1e7;
     margin: 30px;
     padding: 20px;
-
 }
 

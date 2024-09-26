@@ -17,15 +17,16 @@ const Event = () => {
     const [lieuevenement, setLieuevenement] = useState('');
     const [descrievenement, setDescrievenement] = useState('');
     const [photo, setPhoto] = useState(null);
-    const [dataTarif, setDataTarif] = useState([{ nombillet: "", tarifbillet: "" }]);
+    const [dataTarif, setDataTarif] = useState([{ nombillet: "", tarifbillet: "", nombrebillet: "" }]);
     const [dataInfo, setDataInfo] = useState([{ numeroinfo: "", nominfo: "" }]);
+    console.log(dataTarif);
 
     const handleClickDrop = () => {
         setOpenDrop(false);
     }
 
     const handleClickTarif = () => {
-        setDataTarif([...dataTarif, { nombillet: "", tarifbillet: "" }]);
+        setDataTarif([...dataTarif, { nombillet: "", tarifbillet: "", nombrebillet: "" }]);
     }
 
     const handleChangeTarif = (e, i) => {
@@ -126,6 +127,7 @@ const Event = () => {
                                     <div className="billet" key={i}>
                                         <input type="text" name='nombillet' placeholder="Nom du billet" value={val.nombillet} onChange={(e) => handleChangeTarif(e, i)} />
                                         <input type="number" name='tarifbillet' placeholder="Tarif en ariary" value={val.tarifbillet} onChange={(e) => handleChangeTarif(e, i)} />
+                                        <input type="number" name='nombrebillet' placeholder='Nombre de billet' value={val.nombrebillet} onChange={(e) => handleChangeTarif(e,i)} />
                                         <BsFillPlusSquareFill className="icon-plus" onClick={handleClickTarif} />
                                         <AiFillMinusSquare className='icon-moins' onClick={handleDeleteTarif} />
                                     </div>

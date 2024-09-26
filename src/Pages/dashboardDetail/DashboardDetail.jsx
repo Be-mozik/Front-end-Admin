@@ -171,11 +171,19 @@ const DashboardDetail = () => {
                                 ))}
                                 <hr />
                                 <div className="event-detail">
-                                    <span>Statut</span> 
-                                    <span>A venir / Passé</span>
+                                    <span>Statut</span>
+                                    {(() => {
+                                        const parts = event.dateheureevenement.split(' ');
+                                        const formattedDate = `${parts[2]}-${parts[1]}-${parts[0]}T${parts[3]}`;
+                                        return new Date(formattedDate) < new Date() ? (
+                                        <span style={{ color: '#FF0000' }}>Passé</span>
+                                        ) : (
+                                        <span style={{ color: '#2ACD30' }}>À venir</span>
+                                        );
+                                    })()}
                                 </div>
                                 <div className="event-detail">
-                                    <span>Plannifier par</span> 
+                                    <span>Planifié par</span> 
                                     <span>{event.idutilisateur}</span>
                                 </div>
                                 <div className="actions-detail">
