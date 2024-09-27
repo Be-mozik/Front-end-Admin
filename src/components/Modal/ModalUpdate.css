@@ -21,6 +21,7 @@
     overflow-y: auto;
     animation: fadeIn 0.3s ease-out;
     max-height: 95%;
+    width: 50%;
 }
 
 @keyframes fadeIn {

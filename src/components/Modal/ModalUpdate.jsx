@@ -4,10 +4,10 @@ import { BsFillPlusSquareFill } from "react-icons/bs";
 import { AiFillMinusSquare } from "react-icons/ai"
 
 const ModalUpdate = ({onSubmit,onClose}) => {
-    const [dataTarif,setDataTarif] =useState([{billet:"",prix:""}])
+    const [dataTarif,setDataTarif] =useState([{nombillet: "", tarifbillet: "", nombrebillet: ""}])
 
     const handleClickTarif =() => {
-        setDataTarif([...dataTarif,{billet:"",prix:""}])
+        setDataTarif([...dataTarif,{nombillet: "", tarifbillet: "", nombrebillet: ""}])
     }
 
     const handleChangeTarif = (e,i)=>{
@@ -24,10 +24,10 @@ const ModalUpdate = ({onSubmit,onClose}) => {
     }
 
     //Info
-    const [dataInfo,setDataInfo]=useState([{num:"",nom:""}])
+    const [dataInfo,setDataInfo]=useState([{numeroinfo: "", nominfo: ""}])
 
     const handleClickInfo =() => {
-        setDataInfo([...dataInfo,{num:"",nom:""}])
+        setDataInfo([...dataInfo,{numeroinfo: "", nominfo: ""}])
     }
 
     const handleChangeInfo = (e,j)=>{
@@ -63,8 +63,9 @@ const ModalUpdate = ({onSubmit,onClose}) => {
                         {
                             dataTarif.map((val,i) =>
                                 <div className="billet">
-                                    <input type="text" name='billet' placeholder="Nom du billet" value={val.billet} onChange={(e)=>handleChangeTarif(e,i)}/>
-                                    <input type="number" name='prix' placeholder="Tarif en ariary" value={val.prix} onChange={(e)=>handleChangeTarif(e,i)}/>
+                                    <input type="text" name='nombillet' placeholder="Nom du billet" value={val.nombillet} onChange={(e)=>handleChangeTarif(e,i)}/>
+                                    <input type="number" name='tarifbillet' placeholder="Tarif en ariary" value={val.tarifbillet} onChange={(e)=>handleChangeTarif(e,i)}/>
+                                    <input type="number" name='nombrebillet' placeholder="Tarif en ariary" value={val.nombrebillet} onChange={(e)=>handleChangeTarif(e,i)}/>
                                     <BsFillPlusSquareFill className="icon-plus" onClick={handleClickTarif}/>
                                     <AiFillMinusSquare className='icon-moins' onClick={handleDeleteTarif}/>
                                 </div>
@@ -74,8 +75,8 @@ const ModalUpdate = ({onSubmit,onClose}) => {
                         {
                             dataInfo.map((val,j)=>
                                 <div className="info">
-                                    <input type="number" placeholder="Numéro de téléphone" name='num' value={val.num} onChange={(e)=>handleChangeInfo(e,j)}/>
-                                    <input type="text" placeholder="Nom de la personne" name='nom' value={val.nom} onChange={(e)=>handleChangeInfo(e,j)}/>
+                                    <input type="number" placeholder="Numéro de téléphone" name='numeroinfo' value={val.numeroinfo} onChange={(e)=>handleChangeInfo(e,j)}/>
+                                    <input type="text" placeholder="Nom de la personne" name='nominfo' value={val.nominfo} onChange={(e)=>handleChangeInfo(e,j)}/>
                                     <BsFillPlusSquareFill className="icon-plus" onClick={handleClickInfo}/>
                                     <AiFillMinusSquare className='icon-moins' onClick={handleDeleteInfo}/>
                                 </div>

@@ -6,7 +6,8 @@ import ModalDelete from '../../components/Modal/ModalDelete'
 import ModalUpdate from '../../components/Modal/ModalUpdate'
 import DropdwnUser from '../../components/dropdown/DropdownUser'
 import BlocInfo from '../../components/bloc-info/BlocInfo'
-import { BsFillPencilFill, BsFillTrashFill } from "react-icons/bs"
+import { BsFillPencilFill } from "react-icons/bs"
+import { TbCalendarCancel } from "react-icons/tb"
 import { format } from 'date-fns'
 import { useParams } from 'react-router-dom'
 import eventApi from '../../api/eventApi'
@@ -21,13 +22,15 @@ const DashboardDetail = () => {
     const [info, setInfo] = useState([]);
     const [formattedDate, setFormattedDate] = useState('');
     const [formattedTime, setFormattedTime] = useState('');
+    const [modalOpen,setModalOpen] = useState(false);
+    const [modalUpdate,setModalUpdate] = useState(false);
+    const [success,setSuccess] = useState(null);
+    const [error,setError] = useState(null);
+
 
     const handleClickDrop = () =>{
         setOpenDrop(false);
     }
-
-    const [modalOpen,setModalOpen] = useState(false);
-    const [modalUpdate,setModalUpdate] = useState(false);
 
     const handleClick = () => {
         setModalOpen(false);
@@ -94,6 +97,21 @@ const DashboardDetail = () => {
         fetchDataInfo();
     },[id]);
 
+    const handleCancelEvent =  async (id) => {
+        try {
+            const rep = await eventApi.annulerEvent(id);
+            console.log(rep.data.success);
+            if(rep){
+                setModalOpen(false);
+                setSuccess(rep.data.success);
+            }
+        } catch (error) {
+            if(error.response && error.response.data && error.response.data.message){
+                setError(error.response.data.message);
+            }
+        }
+    }
+
     return(
         <>
             <Sidebar></Sidebar>
@@ -124,6 +142,16 @@ const DashboardDetail = () => {
                         <hr />
                     </BlocInfo>
                 </div>
+                { success &&
+                    <div className='container-msg-success'>
+                        <p>{success}</p>
+                    </div>
+                }
+                { error && 
+                    <div className='container-msg-error'>
+                        <p>{error}</p>
+                    </div>
+                }
                 <div className="detail-event">
                     <div className="titre-detail">
                         Details événement
@@ -155,8 +183,8 @@ const DashboardDetail = () => {
                                 { billet.map((b) => (
                                     <>
                                     <div className="event-detail">
-                                        <span>{b.nombillet}</span>
-                                        <span>{b.tarifbillet} Ar - 9 vendu(s)</span>
+                                        <span>{b.nombillet}:</span>
+                                        <span>{parseFloat(b.tarifbillet).toLocaleString('fr-FR', { minimumFractionDigits: 2 })} Ar - 9 vendu(s)</span>
                                     </div>
                                     </>
                                 ))}
@@ -164,34 +192,31 @@ const DashboardDetail = () => {
                                 { info.map((i) => (
                                     <>
                                     <div className="event-detail">
-                                        <span>{i.nominfo}</span>
+                                        <span>{i.nominfo}:</span>
                                         <span>{i.numeroinfo}</span>
                                     </div>
                                     </>
                                 ))}
                                 <hr />
                                 <div className="event-detail">
-                                    <span>Statut</span>
-                                    {(() => {
-                                        const parts = event.dateheureevenement.split(' ');
-                                        const formattedDate = `${parts[2]}-${parts[1]}-${parts[0]}T${parts[3]}`;
-                                        return new Date(formattedDate) < new Date() ? (
-                                        <span style={{ color: '#FF0000' }}>Passé</span>
+                                    <span>Statut: </span>
+                                    {( event.estvalide ? (
+                                        <span style={{ color: '#2ACD30' }}>En cours</span>
                                         ) : (
-                                        <span style={{ color: '#2ACD30' }}>À venir</span>
-                                        );
-                                    })()}
+                                        <span style={{ color: '#FF0000' }}>Annuler</span>
+                                        )
+                                    )}
                                 </div>
                                 <div className="event-detail">
-                                    <span>Planifié par</span> 
+                                    <span>Planifié par:</span> 
                                     <span>{event.idutilisateur}</span>
                                 </div>
-                                <div className="actions-detail">
+                                <div>
                                     <span className="actions-detail">
-                                            <BsFillTrashFill className="deleted" onClick={() => setModalOpen(true)}/>
+                                            <TbCalendarCancel className="deleted" onClick={() => setModalOpen(true)}/>
                                             {modalOpen && (
-                                                <ModalDelete onSubmit={handleClick} onCancel={handleClick} onClose={handleClick}>
-                                                    <p>Voulez-vous vraiment supprimer cet événement ?</p>
+                                                <ModalDelete onSubmit={() => handleCancelEvent(id)} onCancel={handleClick} onClose={handleClick}>
+                                                    <p>Voulez-vous vraiment annuler cet événement ?</p>
                                                 </ModalDelete>
                                             )}
                                             <BsFillPencilFill className="modified" onClick={() => setModalUpdate(true)}/>

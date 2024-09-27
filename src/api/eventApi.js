@@ -28,6 +28,15 @@ const eventApi = {
         } catch (error) {
             throw error;
         }
+    },
+
+    annulerEvent: async (id) => {
+        try {
+            const rep = await axios.put(`${eventBaseUrl}/annuler/${id}`);
+            return rep;
+        } catch (error) {
+            throw error;
+        }
     }
 }
 

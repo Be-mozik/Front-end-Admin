@@ -123,7 +123,33 @@
     max-width: 100%;
     height: auto;
     width: 70px;
+}
+
+.actions-detail svg{
     cursor: pointer;
+}
+
+.container-msg-success {
+    max-width: 92%;
+    background-color: rgba(61, 176, 88, 1);
+    border-radius: 20px;
+    color: #FCFAFA;
+}
+
+.container-msg-success p {
+    font-size: 15px;
+    margin: 0;
+}
+
+.container-msg-error{
+    max-width: 92%;
+    background-color: rgba(255,0,0,0.5);
+    border-radius: 20px;
+    color: #FCFAFA;
+}
+.container-msg-error p{
+    font-size: 15px;
+    margin: 0;
 }
 
 
