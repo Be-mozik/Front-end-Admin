@@ -146,15 +146,19 @@ const Dashboard  = () => {
                                         <td>{e.formattedDate}</td>
                                         <td>{e.lieuevenement}</td>
                                         <td>
-                                            {(() => {
-                                                const parts = e.formattedDate.split('-');
-                                                const isoDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
-                                                return new Date(isoDate) < new Date() ? (
+                                        {(() => {
+                                            const parts = e.formattedDate.split('-');
+                                            const isoDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
+                                            const datevalide = new Date(isoDate) < new Date(); 
+                                            return !e.estvalide ? (
+                                                <span style={{ color: '#FF0000' }}>Annuler</span>
+                                            ) : 
+                                                datevalide ? (
                                                 <span style={{ color: '#FF0000' }}>Passé</span>
-                                                ) : (
+                                            ) : (
                                                 <span style={{ color: '#2ACD30' }}>À venir</span>
-                                                );
-                                            })()}
+                                            );
+                                        })()}
                                         </td>
                                         <td>
                                             <span className="actions">

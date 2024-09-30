@@ -37,6 +37,15 @@ const eventApi = {
         } catch (error) {
             throw error;
         }
+    },
+
+    updateEvent: async (data) => {
+        try {
+            const rep = await axios.put(`${eventBaseUrl}/modifier`,data);
+            return rep;
+        } catch (error) {
+            console.error('Erreur: ',error.response.data);
+        }
     }
 }
 

@@ -19,7 +19,6 @@ const Event = () => {
     const [photo, setPhoto] = useState(null);
     const [dataTarif, setDataTarif] = useState([{ nombillet: "", tarifbillet: "", nombrebillet: "" }]);
     const [dataInfo, setDataInfo] = useState([{ numeroinfo: "", nominfo: "" }]);
-    console.log(dataTarif);
 
     const handleClickDrop = () => {
         setOpenDrop(false);
@@ -39,7 +38,7 @@ const Event = () => {
     const handleDeleteTarif = (j) => {
         const deleteVal = [...dataTarif];
         deleteVal.splice(j, 1);
-        setDataTarif(deleteVal);
+        setDataTarif(deleteVal.length === 0 ? [{ nombillet: "", tarifbillet: "", nombrebillet: "" }] : deleteVal);
     }
 
     const handleClickInfo = () => {
@@ -56,7 +55,7 @@ const Event = () => {
     const handleDeleteInfo = (j) => {
         const deleteVal = [...dataInfo];
         deleteVal.splice(j, 1);
-        setDataInfo(deleteVal);
+        setDataInfo(deleteVal.length === 0 ? [{ numeroinfo: "", nominfo: "" }] : deleteVal);
     }
 
     useEffect(() => {

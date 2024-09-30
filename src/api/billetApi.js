@@ -10,6 +10,15 @@ const billetApi = {
         } catch (error) {
             throw error;
         }
+    },
+
+    deleteBillet: async (id) => {
+        try {
+            const rep = await axios.delete(`${billetBaseUrl}/supprimer/${id}`);
+            return rep;
+        } catch (error) {
+            throw error;
+        }
     }
 }
 

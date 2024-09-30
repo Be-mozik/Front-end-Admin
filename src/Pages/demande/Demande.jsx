@@ -28,10 +28,16 @@ const Demande = () => {
             const rep = await demandeApi.demander(data);
             if(rep){
                 setSuccess(rep.success);
+                setTimeout(() => {
+                    setSuccess(null);
+                }, 5000);
             }
         } catch (error) {
             if(error.response && error.response.data && error.response.data.message){
                 setError(error.response.data.message);
+                setTimeout(() => {
+                    setError(null);
+                }, 5000);
             }
         }finally {
             setLoading(false);
