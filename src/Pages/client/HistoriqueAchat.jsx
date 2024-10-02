@@ -4,8 +4,10 @@ import { MdAccountCircle } from "react-icons/md"
 import DropdwnUser from '../../components/dropdown/DropdownUser'
 import { useState } from 'react'
 import Table from '../../components/table/Table'
+import { useParams } from 'react-router-dom'
 
 const HistoriqueAchat = () => {
+    const { id } = useParams();
     const [openDrop,setOpenDrop] = useState(false);
     
     const handleClickDrop = () =>{
