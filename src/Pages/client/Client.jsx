@@ -7,7 +7,7 @@ import Table from '../../components/table/Table'
 import { FaBagShopping } from "react-icons/fa6"
 import { Link } from 'react-router-dom'
 import clientApi from '../../api/clientApi'
-
+import moment from 'moment'
 
 const Client = () => {
     const [openDrop,setOpenDrop] = useState(false);
@@ -52,8 +52,8 @@ const Client = () => {
                             <tr>
                                 <th>ID</th>
                                 <th>Nom</th>
-                                <th>Prenom</th>
                                 <th>Email</th>
+                                <th>Depuis</th>
                                 <th>Historique</th>
                             </tr>
                         }
@@ -62,9 +62,9 @@ const Client = () => {
                                 { client.map((c) =>(
                                     <tr key={c.idclient}>
                                         <td>{c.idclient}</td>
-                                        <td>{c.nomclient}</td>
-                                        <td>{c.prenomclient}</td>
+                                        <td>{c.nomclient} {c.prenomclient}</td>
                                         <td>{c.mailclient}</td>
+                                        <td>{moment(c.dateclient).format('DD-MM-YYYY')}</td>
                                         <td>
                                             <span className='actions'>
                                                 <Link to={`/historique/${c.idclient}`}>

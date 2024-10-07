@@ -2,14 +2,45 @@ import './HistoriqueAchat.css'
 import Sidebar from '../../components/sidebar/Sidebar'
 import { MdAccountCircle } from "react-icons/md"
 import DropdwnUser from '../../components/dropdown/DropdownUser'
-import { useState } from 'react'
+import { useEffect, useState,useCallback } from 'react'
 import Table from '../../components/table/Table'
 import { useParams } from 'react-router-dom'
+import achatApi from '../../api/achatApi'
+import moment from 'moment'
+import clientApi from '../../api/clientApi'
 
 const HistoriqueAchat = () => {
     const { id } = useParams();
     const [openDrop,setOpenDrop] = useState(false);
-    
+    const [achat, setAchat] =useState([]);
+    const [client,setClient] = useState(null);
+
+    useEffect(() => {
+        const fetchDataClient = async () => {
+            try {
+                const clt = await clientApi.getClientById(id);
+                setClient(clt.data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        fetchDataClient();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []); 
+
+    const fetchDataAchat = useCallback(async () => {
+        try {
+            const achat = await achatApi.getHistoriqueByClient(id);
+            setAchat(achat.data);
+        } catch (error) {
+            console.log('Erreur: ',error);
+        }
+    },[id]);
+
+    useEffect(() => {
+        fetchDataAchat();
+    },[fetchDataAchat]);
+
     const handleClickDrop = () =>{
         setOpenDrop(false);
     }
@@ -30,49 +61,29 @@ const HistoriqueAchat = () => {
                 </div>
                 <div className="table-d-client">
                     <div className="titre-table">
-                        Liste des clients
+                        Liste des achats de {client ? `${client.nomclient} ${client.prenomclient}` : "chargement..."}
                     </div>
                     <Table
                         childrenHead={
                             <tr>
-                                <th>ID</th>
-                                <th>Nom</th>
-                                <th>Email</th>
-                                <th>Event et montant</th>
+                                <th>Event</th>
+                                <th>Billet</th>
+                                <th>Nombre</th>
+                                <th>Montant</th>
+                                <th>Transaction</th>
                             </tr>
                         }
                         childrenBody={
                             <>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Jean</td>
-                                    <td>jean@gmail.com</td>
-                                    <td>Event 1 - 25.000 Ar</td>
+                              { achat.map((a) => (
+                                <tr key={a.tokenachat}>
+                                    <td>{a.idevenement}</td>
+                                    <td>{a.idbillet}</td>
+                                    <td>{a.nombre}</td>
+                                    <td>{parseFloat(a.montant).toLocaleString('fr-FR', { minimumFractionDigits: 2 })} Ar</td>
+                                    <td>{moment(a.datetransaction).format('DD-MM-YYYY à HH:MM')}</td>
                                 </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Jean</td>
-                                    <td>jean@gmail.com</td>
-                                    <td>Event 1 - 25.000 Ar</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Jean</td>
-                                    <td>jean@gmail.com</td>
-                                    <td>Event 1 - 25.000 Ar</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Jean</td>
-                                    <td>jean@gmail.com</td>
-                                    <td>Event 1 - 25.000 Ar</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Jean</td>
-                                    <td>jean@gmail.com</td>
-                                    <td>Event 1 - 25.000 Ar</td>
-                                </tr>
+                              ))}  
                             </>
                         }
                     />

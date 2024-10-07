@@ -10,6 +10,14 @@ const clientApi = {
         } catch (error) {
             throw error;
         }
+    },
+    getClientById: async (id) => {
+        try {
+            const client = await axios.get(`${clientBaseUrl}/${id}`);
+            return client;
+        } catch (error) {
+            throw error;
+        }
     }
 }
 

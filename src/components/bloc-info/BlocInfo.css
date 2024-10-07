@@ -8,19 +8,18 @@
     color: #020202;
     background: #FCFAFA;
     border-radius: 15px;
-    font-size: 16px;
+    font-size: 15px;
     box-shadow: 0 2px 8px #acd1e7;
     padding-top: 10px;
     padding-bottom: 10px;
 }
 
 .info-d span{
-    font-size: 24px;
-    font-weight: 800;
+    font-size: 22px;
+    font-weight: 750;
     color: #2ACD30;
     padding-top: 10px;
-    
-
+    letter-spacing: 0.5px;
 }
 
 .info-d hr{

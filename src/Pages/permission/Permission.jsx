@@ -10,6 +10,7 @@ import { BsPersonFillCheck } from "react-icons/bs"
 import { useEffect } from 'react'
 import utilisateurApi from '../../api/utilisateurApi'
 import demandeApi from '../../api/demandeApi'
+import moment from 'moment'
 
 const Permission = () => {
     const [openDrop,setOpenDrop] = useState(false);
@@ -169,7 +170,7 @@ const Permission = () => {
                                         <td>{demande.iddemande}</td>
                                         <td>{demande.prenomdemande}</td>
                                         <td>{demande.maildemande}</td>
-                                        <td>{demande.datedemande}</td>
+                                        <td>{moment(demande.datedemande).format('DD-MM-YYYY')}</td>
                                         <td>
                                             <span className="actions">
                                             <BsPersonFillCheck className="accepted" onClick={() => OpenAcceptClick(demande.iddemande)}/>
@@ -214,7 +215,7 @@ const Permission = () => {
                                         <td>{utilisateur.idutilisateur}</td>
                                         <td>{utilisateur.prenomutilisateur}</td>
                                         <td>{utilisateur.mailutilisateur}</td>
-                                        <td>{utilisateur.depuisutilisateur}</td>
+                                        <td>{moment(utilisateur.depuisutilisateur).format('DD-MM-YYYY')}</td>
                                         <td>
                                             <span className="actions">
                                                 <BsFillTrashFill className="deleted" onClick={() => OpenModalUser(utilisateur.idutilisateur)}/>
