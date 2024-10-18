@@ -1,6 +1,6 @@
 import './Table.css'
 
-const Table = ({childrenHead,childrenBody}) => {
+const Table = ({childrenHead,childrenBody,onSort}) => {
     return(
      <div className="table-wrapper-d">
         <table className="table-dash">

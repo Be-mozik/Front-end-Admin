@@ -47,9 +47,9 @@ const Demande = () => {
     return(
         <body className="bg-other">
             <div className="container-demande">
-                <div className="header-demande">
-                    <div className="logo-demande">
-                        <img src={Logo} alt="" />
+                <div className="headerdemande">
+                    <div className="logodemande">
+                        <img src={Logo} alt="logodemande" />
                     </div>
                 </div>
                 <form onSubmit={handleLoading}>

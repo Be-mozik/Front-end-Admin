@@ -18,18 +18,15 @@ body{
     position: fixed;
 }
 
-.header{
+.headerbar{
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    width: 100%;
+    padding: 15px;
 }
 
-.logo img {
-    max-width: 100%;
-    height: auto;
-    width: 150px;
-
+.logobar img {
+    height: 100px;
 }
 
 .trait hr {

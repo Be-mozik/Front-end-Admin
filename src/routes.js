@@ -34,7 +34,7 @@ export const routes = [
         element: <Client />
     },
     {
-        path:"/historique/:id",
+        path:"/achat/:id",
         element: <Historique />
     },
     {

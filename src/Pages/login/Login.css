@@ -17,16 +17,16 @@ body.bg-other {
     border-radius: 20px;
 }
 
-.header-login{
+.headerlogin{
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    padding: 20px;
+
 }
 
-.logo img {
-    max-width: 100%;
-    height: auto;
-    width: 150px;
+.logologin img {
+    height: 130px;
 }
 
 .inputs-login{

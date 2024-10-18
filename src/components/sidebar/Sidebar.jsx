@@ -44,9 +44,9 @@ const Sidebar = () => {
 
     return (
         <div className="container">
-            <div className="header">
-                <div className="logo">
-                    <img src={Logo} alt="Logo" />
+            <div className="headerbar">
+                <div className="logobar">
+                    <img src={Logo} alt="Logobar" />
                 </div>
             </div>
             <div className="trait">

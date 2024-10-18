@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const achatBaseUrl = 'http://localhost:5000/api/historique';
+const achatBaseUrl = 'http://localhost:5000/api/achat';
 
 const achatApi = {
     getHistoriqueByClient: async (id) => {

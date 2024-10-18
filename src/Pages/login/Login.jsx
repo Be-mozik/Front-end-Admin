@@ -39,9 +39,9 @@ const Login = () => {
     return (
         <body className="bg-other">
         <div className="container1-login">
-            <div className="header-login">
-                <div className="logo">
-                    <img src={Logo} alt="" />
+            <div className="headerlogin">
+                <div className="logologin">
+                    <img src={Logo} alt="headerlogin" />
                 </div>
             </div>
             <form onSubmit={handleLoading}>

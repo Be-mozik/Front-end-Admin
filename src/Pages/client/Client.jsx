@@ -67,7 +67,7 @@ const Client = () => {
                                         <td>{moment(c.dateclient).format('DD-MM-YYYY')}</td>
                                         <td>
                                             <span className='actions'>
-                                                <Link to={`/historique/${c.idclient}`}>
+                                                <Link to={`/achat/${c.idclient}`}>
                                                     <FaBagShopping className='bag'></FaBagShopping>
                                                 </Link>
                                             </span>

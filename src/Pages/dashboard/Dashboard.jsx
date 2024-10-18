@@ -311,6 +311,12 @@ const Dashboard  = () => {
                 <div className="table-d">
                     <div className="titre-table">
                         Liste des événements
+                        <select >
+                        <option value="">Tous</option>
+                        <option value="John">John</option>
+                        <option value="Jane">Jane</option>
+                        <option value="Peter">Peter</option>
+                        </select>  
                     </div>
                         <Table 
                             childrenHead={

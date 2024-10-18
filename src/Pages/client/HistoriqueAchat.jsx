@@ -20,6 +20,7 @@ const HistoriqueAchat = () => {
             try {
                 const clt = await clientApi.getClientById(id);
                 setClient(clt.data);
+                console.log(clt.data);
             } catch (error) {
                 console.log(error);
             }

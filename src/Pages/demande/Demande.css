@@ -13,17 +13,16 @@
     overflow-y: auto;
 }
 
-.header-demande{
+.headerdemande{
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    width: 100%;
+    padding: 20px;
+
 }
 
-.logo-demande img{
-    max-width: 100%;
-    height: auto;
-    width: 150px;
+.logodemande img {
+    height: 130px;
 }
 
 .inputs-demande{
