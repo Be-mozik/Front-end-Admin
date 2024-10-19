@@ -216,7 +216,6 @@ const Dashboard  = () => {
         const fetchYear2 = async () => {
             try {
                 const rep = await eventSApi.getYears();
-                console.log(rep.data);
                 setYears2(rep.data);
             } catch (error) {
                 console.log(error);
@@ -338,19 +337,14 @@ const Dashboard  = () => {
                                         <td>{e.formattedDate}</td>
                                         <td>{e.lieuevenement}</td>
                                         <td>
-                                        {(() => {
-                                            const parts = e.formattedDate.split('-');
-                                            const isoDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
-                                            const datevalide = new Date(isoDate) < new Date(); 
-                                            return !e.estvalide ? (
-                                                <span style={{ color: '#FF0000' }}>Annuler</span>
-                                            ) : 
-                                                datevalide ? (
+                                        {
+                                            !e.estvalide ? (
                                                 <span style={{ color: '#FF0000' }}>Passé</span>
-                                            ) : (
+                                            ): (
                                                 <span style={{ color: '#2ACD30' }}>À venir</span>
-                                            );
-                                        })()}
+
+                                            )
+                                        }
                                         </td>
                                         <td>
                                             <span className="actions">

@@ -1,6 +1,6 @@
     import './DashboardDetail.css'
     import Sidebar from '../../components/sidebar/Sidebar'
-    import { MdAccountCircle,MdOutlineFileDownload } from "react-icons/md"
+    import { MdAccountCircle } from "react-icons/md"
     import { useEffect, useState } from 'react'
     import ModalDelete from '../../components/Modal/ModalDelete'
     import ModalUpdate from '../../components/Modal/ModalUpdate'
@@ -11,8 +11,8 @@
     import { format } from 'date-fns'
     import { useParams } from 'react-router-dom'
     import eventApi from '../../api/eventApi'
-    import billetApi from '../../api/billetApi'
     import infoApi from '../../api/infoApi'
+    import caApi from '../../api/caApi'
 
     const DashboardDetail = () => {
         const { id } = useParams();
@@ -20,6 +20,7 @@
         const [event,setEvent] = useState(null);
         const [billet, setBillet] = useState([]);
         const [info, setInfo] = useState([]);
+        const [stat,setStat] = useState([]);
         const [formattedDate, setFormattedDate] = useState('');
         const [formattedTime, setFormattedTime] = useState('');
         const [modalOpen,setModalOpen] = useState(false);
@@ -42,7 +43,7 @@
         const refreshData = async () => {
             try {
                 const event = await eventApi.getEventById(id);
-                const billet = await billetApi.getBilletByEvent(id);
+                const billet = await caApi.getStatByEventBillet(id);
                 const info = await infoApi.getInfoByEvent(id);
                 setEvent(event.data);
                 setBillet(billet.data);
@@ -88,7 +89,7 @@
         useEffect(() => {
             const fecthDataBillet = async () => {
                 try {
-                    const billet = await billetApi.getBilletByEvent(id);
+                    const billet = await caApi.getStatByEventBillet(id);
                     setBillet(billet.data);
                 } catch (error) {
                     console.log(error);
@@ -132,6 +133,20 @@
             }, 5000);
         }
 
+        useEffect(() => {
+            const fetchStat = async () => {
+                try {
+                    const rep = await caApi.getStatByEvent(id);
+                    setStat(rep.data);
+                } catch (error) {
+                    console.log(error);
+                }
+            };
+            if (id) {
+                fetchStat();
+            }
+        }, [id]);
+
         return(
             <>
                 <Sidebar></Sidebar>
@@ -148,19 +163,18 @@
                     <div className="info-ds">
                         <BlocInfo>
                             Nombre de vente total
-                            <span>67</span>
+                            <span>{stat.vente}</span>
                             <hr />
                         </BlocInfo>
                         <BlocInfo>
                             C.A total
-                            <span>150.000 Ar</span>
+                            <span>{parseFloat(stat.montant).toLocaleString('fr-FR', { 
+                                minimumFractionDigits: 1, 
+                                maximumFractionDigits: 1 
+                            }).replace(/ /g, '.')} Ar</span>
                             <hr />
                         </BlocInfo>
-                        <BlocInfo>
-                            Télécharger un Pdf
-                            <span><MdOutlineFileDownload /></span>
-                            <hr />
-                        </BlocInfo>
+
                     </div>
                     { success &&
                         <div className='container-msg-success'>
@@ -204,7 +218,7 @@
                                         <>
                                         <div className="event-detail">
                                             <span>{b.nombillet}:</span>
-                                            <span>{parseFloat(b.tarifbillet).toLocaleString('fr-FR', { minimumFractionDigits: 2 })} Ar - 9 vendu(s)</span>
+                                            <span>{parseFloat(b.tarifbillet).toLocaleString('fr-FR', { minimumFractionDigits: 2 })} Ar - {b.total_achats} vendu(s) / {b.nombrebillet}</span>
                                         </div>
                                         </>
                                     ))}
