@@ -20,7 +20,7 @@
         const [event,setEvent] = useState(null);
         const [billet, setBillet] = useState([]);
         const [info, setInfo] = useState([]);
-        const [stat,setStat] = useState([]);
+        const [stat,setStat] = useState({idevenement: 0, montant: 0,vente: 0});
         const [formattedDate, setFormattedDate] = useState('');
         const [formattedTime, setFormattedTime] = useState('');
         const [modalOpen,setModalOpen] = useState(false);
@@ -161,20 +161,21 @@
                         </div>
                     </div>
                     <div className="info-ds">
-                        <BlocInfo>
-                            Nombre de vente total
-                            <span>{stat.vente}</span>
-                            <hr />
-                        </BlocInfo>
-                        <BlocInfo>
-                            C.A total
-                            <span>{parseFloat(stat.montant).toLocaleString('fr-FR', { 
+                    <BlocInfo>
+                        Nombre de vente total
+                        <span>{stat?.vente ?? 0}</span>
+                        <hr />
+                    </BlocInfo>
+                    <BlocInfo>
+                        C.A total
+                        <span>
+                            {parseFloat(stat?.montant ?? 0).toLocaleString('fr-FR', { 
                                 minimumFractionDigits: 1, 
                                 maximumFractionDigits: 1 
-                            }).replace(/ /g, '.')} Ar</span>
-                            <hr />
-                        </BlocInfo>
-
+                            }).replace(/ /g, '.')} Ar
+                        </span>
+                        <hr />
+                    </BlocInfo>
                     </div>
                     { success &&
                         <div className='container-msg-success'>
@@ -218,7 +219,7 @@
                                         <>
                                         <div className="event-detail">
                                             <span>{b.nombillet}:</span>
-                                            <span>{parseFloat(b.tarifbillet).toLocaleString('fr-FR', { minimumFractionDigits: 2 })} Ar - {b.total_achats} vendu(s) / {b.nombrebillet}</span>
+                                            <span>{parseFloat(b.tarifbillet).toLocaleString('fr-FR', { minimumFractionDigits: 2 })} {b.nomdevis} - {b.total_achats} vendu(s) / {b.nombrebillet}</span>
                                         </div>
                                         </>
                                     ))}

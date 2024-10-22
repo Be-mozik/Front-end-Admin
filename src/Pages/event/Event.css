@@ -83,6 +83,17 @@ textarea {
     gap: 10px;
 }
 
+.billet select{
+    margin-left: auto;
+    width: auto;
+    font-size: 14px;
+    border-radius: 8px;
+    height: 45px;
+    padding: 5px;
+    color: #737272;
+    border: 1px solid #3DBEE9;
+}
+
 .icon-plus {
     font-size: 50px;
     color: #737272;

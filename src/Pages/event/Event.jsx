@@ -8,16 +8,19 @@ import { MdAccountCircle } from "react-icons/md"
 import { useNavigate } from 'react-router-dom';
 import event from "../../api/eventApi";
 import utilisateurApi from '../../api/utilisateurApi';
+import devisApi from '../../api/devisApi';
 
 const Event = () => {
     const navigate = useNavigate();
+    const [user, setUser] = useState(null);
     const [openDrop, setOpenDrop] = useState(false);
     const [nomevenement, setNomevenement] = useState('');
     const [dateheureevenement, setDateheureevenement] = useState('');
     const [lieuevenement, setLieuevenement] = useState('');
     const [descrievenement, setDescrievenement] = useState('');
     const [photo, setPhoto] = useState(null);
-    const [dataTarif, setDataTarif] = useState([{ nombillet: "", tarifbillet: "", nombrebillet: "" }]);
+    const [devis, setDevis] = useState([]);
+    const [dataTarif, setDataTarif] = useState([{ nombillet: "", tarifbillet: "", devis: "",nombrebillet: "" }]);
     const [dataInfo, setDataInfo] = useState([{ numeroinfo: "", nominfo: "" }]);
 
     const handleClickDrop = () => {
@@ -25,7 +28,7 @@ const Event = () => {
     }
 
     const handleClickTarif = () => {
-        setDataTarif([...dataTarif, { nombillet: "", tarifbillet: "", nombrebillet: "" }]);
+        setDataTarif([...dataTarif, { nombillet: "", tarifbillet: "",  devis: "",nombrebillet: "" }]);
     }
 
     const handleChangeTarif = (e, i) => {
@@ -38,7 +41,7 @@ const Event = () => {
     const handleDeleteTarif = (j) => {
         const deleteVal = [...dataTarif];
         deleteVal.splice(j, 1);
-        setDataTarif(deleteVal.length === 0 ? [{ nombillet: "", tarifbillet: "", nombrebillet: "" }] : deleteVal);
+        setDataTarif(deleteVal.length === 0 ? [{ nombillet: "", tarifbillet: "", devis: "",nombrebillet: "" }] : deleteVal);
     }
 
     const handleClickInfo = () => {
@@ -75,7 +78,18 @@ const Event = () => {
         fetchUserProfile();
     }, []);
 
-    const [user, setUser] = useState(null);
+    useEffect(() => {
+        const fetchDevis = async () => {
+            try {
+                const ds = await devisApi.getDevis();
+                setDevis(ds.data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        fetchDevis();
+    },[]);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -88,6 +102,9 @@ const Event = () => {
         formData.append('photo', photo);
         formData.append('b', JSON.stringify(dataTarif));
         formData.append('i', JSON.stringify(dataInfo));
+        for (let [key, value] of formData.entries()) {
+            console.log(`${key}: ${value}`);
+        }
 
         try {
             const response = await event.creerEvent(formData);
@@ -125,7 +142,15 @@ const Event = () => {
                                 dataTarif.map((val, i) => (
                                     <div className="billet" key={i}>
                                         <input type="text" name='nombillet' placeholder="Nom du billet" value={val.nombillet} onChange={(e) => handleChangeTarif(e, i)} />
-                                        <input type="number" name='tarifbillet' placeholder="Tarif en ariary" value={val.tarifbillet} onChange={(e) => handleChangeTarif(e, i)} />
+                                        <input type="number" name='tarifbillet' placeholder="Tarif" value={val.tarifbillet} onChange={(e) => handleChangeTarif(e, i)} />
+                                        <select name="devis" value={val.devis} onChange={(e) => handleChangeTarif(e, i)}>
+                                            <option defaultValue="Devis">Devis</option>
+                                            {
+                                                devis.map(ds => (
+                                                    <option value={ds.iddevis}>{ds.nomdevis}</option>
+                                                ))
+                                            }
+                                        </select>
                                         <input type="number" name='nombrebillet' placeholder='Nombre de billet' value={val.nombrebillet} onChange={(e) => handleChangeTarif(e,i)} />
                                         <BsFillPlusSquareFill className="icon-plus" onClick={handleClickTarif} />
                                         <AiFillMinusSquare className='icon-moins' onClick={handleDeleteTarif} />
