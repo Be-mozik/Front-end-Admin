@@ -6,6 +6,7 @@ import billetApi from '../../api/billetApi';
 import infoApi from '../../api/infoApi';
 import { useParams } from 'react-router-dom';
 import eventApi from '../../api/eventApi';
+import devisApi from '../../api/devisApi';
 
 const ModalUpdate = ({onClose,eventData,refreshData,onSuccess}) => {
     const { id } = useParams();
@@ -14,7 +15,8 @@ const ModalUpdate = ({onClose,eventData,refreshData,onSuccess}) => {
     const [eventLieu, setEventLieu] = useState('');
     const [eventDescri,setEventDescri] = useState('');
     const [photo, setPhoto] = useState(null);
-    const [dataTarif, setDataTarif] = useState([{ nombillet: "", tarifbillet: "", nombrebillet: "" }]);
+    const [devis, setDevis] = useState([]);
+    const [dataTarif, setDataTarif] = useState([{ nombillet: "", tarifbillet: "",devis: "",nombrebillet: "" }]);
     const [dataInfo, setDataInfo] = useState([{ numeroinfo: "", nominfo: "" }]);
 
     useEffect(() => {
@@ -30,7 +32,7 @@ const ModalUpdate = ({onClose,eventData,refreshData,onSuccess}) => {
         const fecthDataBillet = async () => {
             try {
                 const billet = await billetApi.getBilletByEvent(id);
-                setDataTarif(billet.data.length > 0 ? billet.data : [{ nombillet: "", tarifbillet: "", nombrebillet: "" }]); 
+                setDataTarif(billet.data.length > 0 ? billet.data : [{ nombillet: "", tarifbillet: "",devis: "",nombrebillet: "" }]); 
             } catch (error) {
                 console.log(error);
             }
@@ -61,10 +63,22 @@ const ModalUpdate = ({onClose,eventData,refreshData,onSuccess}) => {
         setDataTarif(onchangeVal);
     }
 
+    useEffect(() => {
+        const fetchDevis = async () => {
+            try {
+                const ds = await devisApi.getDevis();
+                setDevis(ds.data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        fetchDevis();
+    },[]);
+
     const handleDeleteTarif = (j) => {
         const deleteVal = [...dataTarif];
         deleteVal.splice(j, 1);
-        setDataTarif(deleteVal.length === 0 ? [{ nombillet: "", tarifbillet: "", nombrebillet: "" }] : deleteVal);
+        setDataTarif(deleteVal.length === 0 ? [{ nombillet: "", tarifbillet: "",devis: "",nombrebillet: "" }] : deleteVal);
     }
 
     const handleClickInfo = () => {
@@ -127,6 +141,14 @@ const ModalUpdate = ({onClose,eventData,refreshData,onSuccess}) => {
                                 <div className="billet" key={i}>
                                     <input type="text" name='nombillet' placeholder="Nom du billet" value={val.nombillet} onChange={(e) => handleChangeTarif(e, i)} />
                                     <input type="number" name='tarifbillet' placeholder="Tarif en ariary" value={val.tarifbillet} onChange={(e) => handleChangeTarif(e, i)} />
+                                    <select name="devis" value={val.devis} onChange={(e) => handleChangeTarif(e, i)}>
+                                            <option defaultValue="Devis">Devis</option>
+                                            {
+                                                devis.map(ds => (
+                                                    <option value={ds.iddevis}>{ds.nomdevis}</option>
+                                                ))
+                                            }
+                                    </select>
                                     <input type="number" name='nombrebillet' placeholder="Nombre de billets" value={val.nombrebillet} onChange={(e) => handleChangeTarif(e, i)} />
                                     <BsFillPlusSquareFill className="icon-plus" onClick={handleClickTarif} />
                                     <AiFillMinusSquare className='icon-moins' onClick={() => handleDeleteTarif(i)} />
