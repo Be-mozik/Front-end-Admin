@@ -238,7 +238,7 @@
                                         {( event.estvalide ? (
                                             <span style={{ color: '#2ACD30' }}>En cours</span>
                                             ) : (
-                                            <span style={{ color: '#FF0000' }}>Annuler</span>
+                                            <span style={{ color: '#FF0000' }}>Passé</span>
                                             )
                                         )}
                                     </div>
