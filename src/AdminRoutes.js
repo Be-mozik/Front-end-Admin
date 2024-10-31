@@ -38,10 +38,6 @@ export const routes = [
         element: <Historique />
     },
     {
-        path:"/permission",
-        element: <Permission />
-    },
-    {
         path:"/event",
         element: <Event />
     }

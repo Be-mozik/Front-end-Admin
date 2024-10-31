@@ -1,0 +1,28 @@
+@font-face {
+    font-family: 'CinematograficaExtraBold';
+    src: url('../../assets/fonts/Cinematografica/Cinematografica-Extrabold-trial.ttf');
+    font-weight: normal;
+    font-size: normal;
+}
+
+@font-face {
+    font-family: 'CinematograficaLight';
+    src: url('../../assets/fonts/Cinematografica/Cinematografica-Extralight-trial.ttf');
+    font-weight: normal;
+    font-size: normal;
+}
+
+@font-face {
+    font-family: 'HelveticaCn';
+    src: url('../../assets/fonts/Helvetica/HelveticaNeueLTProCn.otf');
+}
+
+.accueil-client-container{
+    background-image: url('../../../public/Background.svg');
+    Background-size : 100% auto;
+    display: flex;
+    flex-direction: column;
+    height: 110vh;
+    font-family: 'CinematograficaExtraBold';
+    background-repeat : repeat-y;
+}

@@ -1,0 +1,51 @@
+@font-face {
+    font-family: 'CinematograficaExtraBold';
+    src: url('../../assets/fonts/Cinematografica/Cinematografica-Extrabold-trial.ttf');
+    font-weight: normal;
+    font-size: normal;
+}
+
+@font-face {
+    font-family: 'CinematograficaLight';
+    src: url('../../assets/fonts/Cinematografica/Cinematografica-Extralight-trial.ttf');
+    font-weight: normal;
+    font-size: normal;
+}
+
+@font-face {
+    font-family: 'HelveticaCn';
+    src: url('../../assets/fonts/Helvetica/HelveticaNeueLTProCn.otf');
+}
+
+
+.login-client-container{
+    background-image: url('../../../public/Background.svg');
+    Background-size : 100% auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 110vh;
+    margin: -20px 0 50px;
+    font-family: 'CinematograficaExtraBold';
+}
+
+.separator {
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.line {
+flex: 1;
+height: 1px;
+background-color: #000000;
+margin: 0 50px;
+}
+
+.text {
+padding: 0 10px;
+color: #000000;
+}
+  
+

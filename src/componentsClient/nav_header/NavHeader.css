@@ -1,0 +1,73 @@
+@font-face {
+    font-family: 'CinematograficaExtraBold';
+    src: url('../../assets/fonts/Cinematografica/Cinematografica-Extrabold-trial.ttf');
+    font-weight: normal;
+    font-size: normal;
+}
+
+@font-face {
+    font-family: 'CinematograficaLight';
+    src: url('../../assets/fonts/Cinematografica/Cinematografica-Extralight-trial.ttf');
+    font-weight: normal;
+    font-size: normal;
+}
+
+@font-face {
+    font-family: 'HelveticaCn';
+    src: url('../../assets/fonts/Helvetica/HelveticaNeueLTProCn.otf');
+}
+
+
+.header-container{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    padding: 20px;
+    z-index: 1000;
+}
+
+.logo-client img{
+    height: 90px;
+}
+
+.menu-bar {
+display: flex;
+justify-content: center;
+padding: 10px 0;
+}
+
+.menu {
+display: flex;
+list-style-type: none;
+padding: 0;
+margin: 0;
+}
+
+.menu li {
+margin: 0 15px;
+cursor: pointer;
+font-weight: bold;
+color: #F5F5F5;
+font-family: 'CinematograficaExtraBold';
+letter-spacing: 0.5px;
+font-size: 20px;
+}
+
+.menu li:hover {
+    border-bottom: 2px solid #F5F5F5;
+    padding-bottom: 3px;
+}
+
+.icon-header {
+    display: flex;
+    gap: 35px;
+    color: #F5F5F5;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+  
+
+
+
