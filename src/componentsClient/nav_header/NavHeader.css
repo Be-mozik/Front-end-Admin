@@ -18,22 +18,31 @@
 }
 
 
-.header-container{
+.header-container {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     margin: 20px;
-    padding: 20px;
     z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(1px);
+    border-radius: 10px;
+    padding: 10px;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    right: 0;
 }
 
+
 .logo-client img{
-    height: 90px;
+    height: 50px;
+    padding: 0 10px;
 }
 
 .menu-bar {
 display: flex;
 justify-content: center;
-padding: 10px 0;
 }
 
 .menu {
@@ -53,18 +62,17 @@ letter-spacing: 0.5px;
 font-size: 20px;
 }
 
-.menu li:hover {
-    border-bottom: 2px solid #F5F5F5;
-    padding-bottom: 3px;
-}
 
 .icon-header {
     display: flex;
     gap: 35px;
     color: #F5F5F5;
     font-size: 20px;
+    font-weight: 700;
     cursor: pointer;
 }
+
+
 
 
   

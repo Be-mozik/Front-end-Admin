@@ -195,10 +195,10 @@
                             { event ? (
                                 <>
                             <div className="bloc-event1">
-                                            <div className="place-img" key="lol">
-                                                <img src={`http://localhost:5000/uploads/${event.imgevenement}`} alt={`${event.imagevenement}`}/>
-                                            </div>
-                                        </div>
+                                <div className="place-img" key="lol">
+                                    <img src={`http://localhost:5000/uploads/${event.imgevenement}`} alt={`${event.imagevenement}`}/>
+                                </div>
+                            </div>
                                 <div className="bloc-event2">
                                     <h4>{event.nomevenement}</h4>
                                     <p className='descri'>{event.descrievenement}</p>
@@ -263,7 +263,7 @@
                                 </div>
                                 </>
                             ): (
-                                <p>Aucun événement trouvé</p>
+                                <p>Aucun événement n'a été trouvé</p>
                             )}
                         </div>
                     </div>

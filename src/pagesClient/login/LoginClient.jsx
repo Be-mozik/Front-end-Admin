@@ -61,7 +61,7 @@ const LoginClient = () => {
                    <loginComponents.Form>
                        <loginComponents.Title>Se connecter</loginComponents.Title>
                        <loginComponents.Input type='email' placeholder='Email' />
-                       <loginComponents.Input type='password' placeholder='Password' />
+                       <loginComponents.Input type='password' placeholder='Mot de passe' />
                        <loginComponents.Button>Connexion</loginComponents.Button>
                        <div style={{ display: 'flex', alignItems: 'center', margin: '20px 0' }}>
                             <div style={{

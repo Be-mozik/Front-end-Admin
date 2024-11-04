@@ -1,0 +1,31 @@
+@font-face {
+    font-family: 'HelveticaCn';
+    src: url('../../assets/fonts/Helvetica/HelveticaNeueLTProCn.otf');
+}
+
+.container-footer {
+    display: flex;                   
+    justify-content: space-between;  
+    align-items: center;            
+    padding: 20px;                   
+    background-color: #f8a40c;         
+    color: white;                   
+}
+
+.container-footer img {
+    max-height: 50px;               
+}
+
+.container-footer p {
+    margin: 0;                       
+    text-align: center;             
+    flex: 1;
+    font-family: 'HelveticaCn';                        
+}
+
+.icon-footer{
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+    margin: 10px;
+}

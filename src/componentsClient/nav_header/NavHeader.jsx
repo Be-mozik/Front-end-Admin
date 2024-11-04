@@ -11,9 +11,10 @@ const NavHeader = () => {
             </div>
             <div className="menu-bar">
                 <ul className='menu'>
-                    <li>Artiste</li>
                     <li>Event</li>
+                    <li>Artiste</li>
                     <li>A propos</li>
+                    <li>Mes achats</li>
                 </ul>
             </div>
             <div className="icon-header">
