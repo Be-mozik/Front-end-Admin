@@ -1,5 +1,6 @@
 import Login from './pagesClient/login/LoginClient'
 import Accueil from './pagesClient/accueil/AccueilClient'
+import Event from './pagesClient/event/DetailEvent'
 
 export const routesClient = [
     {
@@ -9,5 +10,9 @@ export const routesClient = [
     {
         path: "/Accueil",
         element: <Accueil />
+    },
+    {
+        path: "/Evenement",
+        element: <Event />
     }
 ]

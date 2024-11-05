@@ -1,0 +1,205 @@
+@font-face {
+    font-family: 'CinematograficaExtraBold';
+    src: url('../../assets/fonts/Cinematografica/Cinematografica-Extrabold-trial.ttf');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'CinematograficaLight';
+    src: url('../../assets/fonts/Cinematografica/Cinematografica-Extralight-trial.ttf');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'HelveticaCn';
+    src: url('../../assets/fonts/Helvetica/HelveticaNeueLTProCn.otf');
+}
+
+body {
+    overflow-y: auto;
+}
+
+.event-page {
+    background-image: url('../../../public/Background.svg');
+    background-size: cover;
+    font-family: 'HelveticaCn';
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #005cbf;
+    color: #fff;
+    letter-spacing: 1px;
+    padding: 20px;
+}
+
+.event-image-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+    width: 30%;
+}
+
+.event-image {
+    width: 100%; 
+    height: auto;
+    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.3); 
+}
+
+.event-details-section {
+    padding: 20px;
+    max-width: 30%;
+    margin-left: 5%; 
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(3px);
+    margin-top: 90px; 
+}
+
+.event-title {
+    border: solid 1px white;
+    font-size: 28px; 
+    margin-bottom: 10px;
+    text-align: center;
+    padding: 5px; 
+}
+
+.event-description {
+    font-size: 14px; 
+    margin-bottom: 10px;
+    border: solid 1px white;
+    text-align: center;
+    padding: 5px;
+}
+
+.information-event{
+    margin-bottom: 10px;
+    border: solid 1px white;
+    text-align: center;
+    padding: 5px;
+}
+
+.event-detail-info {
+    border: solid 1px white;
+    margin-bottom: 10px;
+    display: block;
+    text-align: center;
+    padding: 5px;
+}
+
+.event-detail-info label {
+    font-weight: bold;
+}
+
+.info-item {
+    display: flex;
+    margin-bottom: 5px;
+    text-align: center;
+    justify-content: center;
+}
+
+.event-detail-billet {
+    border: solid 1px white;
+    margin-bottom: 10px;
+    display: block;
+    text-align: center;
+    padding: 5px;
+}
+
+.billet-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    justify-content: center;
+}
+
+
+.billet-item input[type="radio"] {
+    appearance: none;
+    width: 13px; 
+    height: 13px;
+    background-color: #000;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+}
+
+.billet-item input[type="radio"]:checked {
+    background-color: #ffffff;
+    border: 3px solid #000000;
+}
+
+.billet-item input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #ffffff;
+}
+
+.label-billet {
+    font-weight: bold;
+}
+
+.event-options {
+    margin-bottom: 20px;
+}
+
+.option {
+    margin-bottom: 15px;
+    border: solid 1px white;
+    padding: 5px; 
+}
+
+.option label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.quantity button {
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin: 0 5px;
+    justify-content: center;
+    box-shadow: 3px 3px 0px 0px #000;
+    transition: background-color 0.3s; 
+}
+
+.quantity button:hover {
+    background-color: #e0e0e0; 
+}
+
+.plus-quantity {
+    text-align: center;
+}
+
+.quantity span {
+    margin: 0 10px;
+}
+
+.add-to-bag {
+    background-color: #ffffff;
+    border: solid 1px black;
+    color: #000000;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    box-shadow: 5px 5px 0px 0px #000;
+    transition: background-color 0.3s; 
+}
+
+.add-to-bag:hover {
+    background-color: #e0e0e0;
+}

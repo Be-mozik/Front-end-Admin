@@ -70,11 +70,14 @@
     border-radius: 20px;
     justify-content: center;
     align-items: center;
+
 }
 
 .place-img img{
     width: 130%;
-    height: 130%;
+    height: auto;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+
 }
 
 .bloc-event2{

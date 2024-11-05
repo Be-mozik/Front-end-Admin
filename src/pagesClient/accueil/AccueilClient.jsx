@@ -12,7 +12,6 @@ const AccueilClient = () => {
         const fetchEvent = async () => {
             try {
                 const rep = await eventApi.getEvents();
-                console.log(rep.data);
                 setEvent(rep.data);
             } catch (error) {
                 console.log('Erreur lors de la récupération des events');
@@ -73,8 +72,8 @@ const AccueilClient = () => {
                 )}
                 </div>
             </div>
-            <FooterClient></FooterClient>
         </div>
+        <FooterClient></FooterClient>
         </>
     )
 }

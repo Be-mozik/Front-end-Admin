@@ -7,13 +7,14 @@
     display: flex;                   
     justify-content: space-between;  
     align-items: center;            
-    padding: 20px;                   
+    padding: 10px 50px; 
     background-color: #f8a40c;         
-    color: white;                   
+    color: white;   
+    max-height: 50px;
 }
 
 .container-footer img {
-    max-height: 50px;               
+    max-height: 50px; 
 }
 
 .container-footer p {
@@ -23,9 +24,9 @@
     font-family: 'HelveticaCn';                        
 }
 
-.icon-footer{
+.icon-footer {
     color: white;
-    font-size: 25px;
+    font-size: 20px; 
     cursor: pointer;
-    margin: 10px;
+    margin: 10px; 
 }
