@@ -236,7 +236,7 @@
                                     <div className="event-detail">
                                         <span>Statut: </span>
                                         {( event.estvalide ? (
-                                            <span style={{ color: '#2ACD30' }}>En cours</span>
+                                            <span style={{ color: '#2ACD30' }}>À venir</span>
                                             ) : (
                                             <span style={{ color: '#FF0000' }}>Passé</span>
                                             )
