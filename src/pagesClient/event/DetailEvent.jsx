@@ -73,7 +73,7 @@ const DetailEvent = () => {
             const disponibilite = await billetApi.checkBillet(selectedBillet.id,quantity);
             if (disponibilite.data.success) {
                 const cartItem = {
-                    eventId: event.id,
+                    eventId: id,
                     eventName: event.nomevenement,
                     billetId: selectedBillet.id,
                     billetName: selectedBillet.name,

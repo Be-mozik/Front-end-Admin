@@ -93,6 +93,24 @@ const Panier = () => {
                                 <p>{formatAmount(totalAmount)} {currency}</p>
                             </div>
                             <hr />
+                            <div className="checkout">
+                                <div className="checkout-item">
+                                    <input type="radio" name="billet" id="mvola" />
+                                    <label htmlFor="mvola">
+                                        <span>MVola</span>
+                                    </label>
+
+                                    <input type="radio" name="billet" id="orange" />
+                                    <label htmlFor="orange">
+                                        <span>Orange Money</span>
+                                    </label>
+
+                                    <input type="radio" name="billet" id="sumup" />
+                                    <label htmlFor="sumup">
+                                        <span>SumUp</span>
+                                    </label>
+                                </div>
+                            </div>
                             <button className="passer-caisse">Passer en caisse</button>
                         </div>
                     </div>
