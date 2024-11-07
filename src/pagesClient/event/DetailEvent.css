@@ -23,7 +23,7 @@ body {
     background-image: url('../../../public/Background.svg');
     background-size: cover;
     font-family: 'HelveticaCn';
-    min-height: 100vh;
+    min-height: 86.5vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,8 +37,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 5%;
-    width: 30%;
+    margin-top: 6%;
+    width: 26%;
 }
 
 .event-image {
@@ -144,6 +144,7 @@ body {
 
 .label-billet {
     font-weight: bold;
+    font-family: 'HelveticaCn';
 }
 
 .event-options {

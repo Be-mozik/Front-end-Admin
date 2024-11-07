@@ -6,7 +6,7 @@ import { useEffect, useState,useCallback } from 'react'
 import Table from '../../components/table/Table'
 import { useParams } from 'react-router-dom'
 import achatApi from '../../api/achatApi'
-import moment from 'moment'
+import moment from 'moment-timezone';
 import clientApi from '../../api/clientApi'
 
 const HistoriqueAchat = () => {
@@ -20,7 +20,6 @@ const HistoriqueAchat = () => {
             try {
                 const clt = await clientApi.getClientById(id);
                 setClient(clt.data);
-                console.log(clt.data);
             } catch (error) {
                 console.log(error);
             }
@@ -29,18 +28,19 @@ const HistoriqueAchat = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []); 
 
-    const fetchDataAchat = useCallback(async () => {
-        try {
-            const achat = await achatApi.getHistoriqueByClient(id);
-            setAchat(achat.data);
-        } catch (error) {
-            console.log('Erreur: ',error);
-        }
-    },[id]);
-
     useEffect(() => {
-        fetchDataAchat();
-    },[fetchDataAchat]);
+        const fetchHistorique = async () => {
+            if (id) {
+                try {
+                    const histo = await achatApi.getHistoriqueByClient(id);
+                    setAchat(histo.data);
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        };
+        fetchHistorique();
+    }, [id]);
 
     const handleClickDrop = () =>{
         setOpenDrop(false);
@@ -78,11 +78,11 @@ const HistoriqueAchat = () => {
                             <>
                               { achat.map((a) => (
                                 <tr key={a.tokenachat}>
-                                    <td>{a.idevenement}</td>
-                                    <td>{a.idbillet}</td>
+                                    <td>{a.nomevenement}</td>
+                                    <td>{a.nombillet}</td>
                                     <td>{a.nombre}</td>
                                     <td>{parseFloat(a.montant).toLocaleString('fr-FR', { minimumFractionDigits: 2 })} Ar</td>
-                                    <td>{moment(a.datetransaction).format('DD-MM-YYYY à HH:MM')}</td>
+                                    <td>{moment.tz(a.datetransaction, 'Asia/Baghdad').format('DD-MM-YYYY à HH:mm')}</td>
                                 </tr>
                               ))}  
                             </>

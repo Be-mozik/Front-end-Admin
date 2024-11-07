@@ -6,51 +6,94 @@ import caApi from '../../api/caApi';
 import infoApi from '../../api/infoApi';
 import moment from 'moment'
 import FooterClient from '../../componentsClient/footer/FooterClient';
+import billetApi from '../../api/billetApi';
+import { useParams } from 'react-router-dom'
+
 
 const DetailEvent = () => {
+    const { id } = useParams();
     const [quantity, setQuantity] = useState(1);
     const [event, setEvent] = useState(null);
     const [billet,setBillet] = useState([]);
     const [info,setInfo] = useState([]);
+    const [selectedBillet, setSelectedBillet] = useState(null);
 
     useEffect(() => {
         const fetchDataEvent = async () => {
             try {
-                const event = await eventApi.getEventById('Event 29');
-                console.log(event.data.dateheureevenement);
+                const event = await eventApi.getEventById(id);
                 setEvent(event.data);
             } catch (error) {
                 console.log(error);
             }
         };
         fetchDataEvent();
-    }, ['Event 29']);
+    }, [id]);
 
     useEffect(() => {
         const fecthDataBillet = async () => {
             try {
-                const billet = await caApi.getStatByEventBillet('Event 29');
-                console.log(billet.data);
+                const billet = await caApi.getStatByEventBillet(id);
                 setBillet(billet.data);
             } catch (error) {
                 console.log(error);
             }
         };
         fecthDataBillet();
-    }, ['Event 29']);
+    }, [id]);
 
     useEffect(() => {
         const fetchDataInfo = async () => {
             try {
-                const info = await infoApi.getInfoByEvent('Event 29');
-                console.log(info.data);
+                const info = await infoApi.getInfoByEvent(id);
                 setInfo(info.data);
             } catch (error) {
                 console.log(error);
             }
         };
         fetchDataInfo();
-    },['Event 29']);
+    },[id]);
+
+    const handleBilletSelect = (event) => {
+        const [id, name,tarif,devis] = event.target.value.split(':');
+        setSelectedBillet({
+            id,
+            name,
+            tarif,
+            devis,
+        });
+    };
+
+    const addPanier = async () => {
+        if(!selectedBillet){
+            alert('Veuillez sélectionner un billet.');
+            return;
+        }
+        try {
+            const disponibilite = await billetApi.checkBillet(selectedBillet.id,quantity);
+            if (disponibilite.data.success) {
+                const cartItem = {
+                    eventId: event.id,
+                    eventName: event.nomevenement,
+                    billetId: selectedBillet.id,
+                    billetName: selectedBillet.name,
+                    quantity,
+                    price: selectedBillet.tarif * quantity,
+                    currency: selectedBillet.devis,
+                };
+                const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
+                existingCart.push(cartItem);
+                localStorage.setItem('cart', JSON.stringify(existingCart));
+                window.dispatchEvent(new Event('cartUpdated'));
+            } else {
+                alert(disponibilite.data.message);
+            }
+
+        } catch (error) {
+            console.log(error);
+            
+        }
+    }
 
     return (
         <>
@@ -94,7 +137,8 @@ const DetailEvent = () => {
                                 type="radio"
                                 name="billet"
                                 id={`billet-${index}`}
-                                value={b.nombillet}
+                                value={`${b.idbillet}:${b.nombillet}:${b.tarifbillet}:${b.nomdevis}`}
+                                onChange={handleBilletSelect}
                             />
                             <label htmlFor={`billet-${index}`}>
                                 <span>{b.nombillet} : </span>
@@ -115,7 +159,7 @@ const DetailEvent = () => {
                         </div>
                     </div>
                 </div>
-                <button className="add-to-bag">Ajouter au panier</button>
+                <button className="add-to-bag" onClick={addPanier}>Ajouter au panier</button>
             </div>
             </>
             ):(

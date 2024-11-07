@@ -17,6 +17,7 @@ const DropdwnUser = ({ onCloseDrop }) => {
                     setUser(decoded);
                 } else {
                     console.log('Token non trouvé');
+                    await handleDeco();
                 }
             } catch (err) {
                 console.log(err);

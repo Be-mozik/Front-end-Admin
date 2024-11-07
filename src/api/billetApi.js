@@ -19,6 +19,18 @@ const billetApi = {
         } catch (error) {
             throw error;
         }
+    },
+
+    checkBillet: async (id,nombre) => {
+        try {
+            const rep = await axios.post(`${billetBaseUrl}/check/${id}`,{
+                nombre,
+            });
+            return rep;
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
     }
 }
 

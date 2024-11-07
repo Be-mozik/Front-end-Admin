@@ -52,6 +52,8 @@ body{
     font-size: 12px;
     max-width: 600px;
     text-align: center;
+    letter-spacing: 1px;
+
 }
 
 .events {
@@ -86,13 +88,25 @@ body{
     margin-top: 50px;
     font-family: 'HelveticaCn';
     font-size: 16px;
+    letter-spacing: 1px;
+
 }
 
 .event {
     display: flex;             
     overflow-x: auto;           
-    padding: 70px;
+    padding: 50px;
     white-space: nowrap;
+}
+
+.event p {
+    flex-grow: 1;
+    text-align: center;
+    margin: 0; 
+    margin-top: 50px;
+    font-family: 'HelveticaCn';
+    font-size: 16px;
+    letter-spacing: 1px;
 }
 
 .event::-webkit-scrollbar {
@@ -125,5 +139,4 @@ body{
     padding: 0 50px;
     color: #FFFFFF;
     margin-top: 1%;
-
 }

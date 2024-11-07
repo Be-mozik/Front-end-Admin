@@ -8,6 +8,7 @@ import { IoCalendarSharp } from "react-icons/io5"
 import { Link, useLocation } from 'react-router-dom'
 import utilisateurApi from '../../api/utilisateurApi'
 
+
 const Sidebar = () => {
     const location = useLocation();
     const [activeLink, setActiveLink] = useState(location.pathname);

@@ -9,9 +9,12 @@ const FooterClient = () => {
         <div className="container-footer">
             <img src={Logo} alt="Logobar" />
             <p>© Tous droits réservés</p>
-            <FontAwesomeIcon className='icon-footer' icon={faFacebook} />
-            <FontAwesomeIcon className='icon-footer'icon={faEnvelope} />
-
+            <a href="https://www.facebook.com/bemozik.antananarivo" target="_blank" rel="noopener noreferrer">
+                <FontAwesomeIcon className='icon-footer' icon={faFacebook} />
+            </a>
+            <a href="mailto:bemozik@icloud.com" target="_blank" rel="noopener noreferrer">
+                <FontAwesomeIcon className='icon-footer' icon={faEnvelope} />
+            </a>
         </div>
     )
 }

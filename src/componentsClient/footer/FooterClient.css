@@ -14,14 +14,16 @@
 }
 
 .container-footer img {
-    max-height: 50px; 
+    max-height: 45px; 
 }
 
 .container-footer p {
     margin: 0;                       
     text-align: center;             
     flex: 1;
-    font-family: 'HelveticaCn';                        
+    font-family: 'HelveticaCn';   
+    letter-spacing: 0.5px;
+
 }
 
 .icon-footer {

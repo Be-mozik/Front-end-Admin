@@ -7,10 +7,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: black; 
-    box-shadow: 20px 20px 0px 0px #000; 
+    background-color: black;
+    box-shadow: 20px 20px 0px 0px #000;
+    transition: transform 0.2s ease-in, box-shadow 0.2s ease-in;
     cursor: pointer;
-    transition: transform 0.2s ease-in, box-shadow 0.2s ease-in; 
 }
 
 .bloc-img:active {
@@ -18,10 +18,16 @@
     box-shadow: 15px 15px 0px 0px #000;
 }
 
-
-
 .bloc-img img {
-    width: 100%;           
-    height: 100%;          
-    object-fit: contain;     
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.bloc-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
 }

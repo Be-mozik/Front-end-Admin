@@ -1,0 +1,79 @@
+@font-face {
+    font-family: 'CinematograficaExtraBold';
+    src: url('../../assets/fonts/Cinematografica/Cinematografica-Extrabold-trial.ttf');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'CinematograficaLight';
+    src: url('../../assets/fonts/Cinematografica/Cinematografica-Extralight-trial.ttf');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'HelveticaCn';
+    src: url('../../assets/fonts/Helvetica/HelveticaNeueLTProCn.otf');
+}
+
+.apropos-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../../../public/Background.svg');
+    background-size: cover;
+    font-family: 'CinematograficaExtraBold', sans-serif;
+    min-height: 91.6vh;
+    overflow-y: auto;
+}
+
+.apropos-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1000px;
+    width: 100%;
+    margin-top: 5%;
+    padding: 20px;
+    box-shadow: 10px 10px 0px 0px #000;
+    background-color: rgba(255, 255, 255, 0.3);
+    gap: 25px;
+}
+
+.logo {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 20px;
+}
+
+.logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+.description {
+    flex: 2;
+    font-family: 'HelveticaCn', sans-serif;
+    color: #ffffff;
+    line-height: 1.8;
+    font-size: 1rem;
+}
+
+.description p {
+    max-width: 600px;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    text-align: justify;
+    white-space: pre-line;
+    letter-spacing: 1px;
+}
+
+.list-item {
+    margin-left: 20px; 
+}
+
+

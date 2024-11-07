@@ -1,0 +1,153 @@
+@font-face {
+    font-family: 'CinematograficaExtraBold';
+    src: url('../../assets/fonts/Cinematografica/Cinematografica-Extrabold-trial.ttf');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'CinematograficaLight';
+    src: url('../../assets/fonts/Cinematografica/Cinematografica-Extralight-trial.ttf');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'HelveticaCn';
+    src: url('../../assets/fonts/Helvetica/HelveticaNeueLTProCn.otf');
+}
+
+body{
+    overflow-y: auto;
+}
+
+.container-panier{
+    background-image: url('../../../public/Background.svg');
+    Background-size : 100% auto;
+    font-family: 'CinematograficaExtraBold';
+    min-height: 91.6vh;
+    overflow-y: auto;
+}
+
+.content-panier{
+    display: flex;
+    flex-direction: column;
+    padding: 50px 50px;
+    color: #FFFFFF;
+    margin-top: 5%;
+}
+
+.titre-panier{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+    align-items: flex-start; 
+    width: 100%; 
+    margin-bottom: 20px;
+    margin: 0;
+}
+
+.titre-panier h1{
+    flex-grow: 1;
+    text-align: left;
+    font-size: 72px;
+    margin: 0;
+}
+
+.titre-panier p {
+    flex-grow: 1;
+    text-align: right;
+    margin: 0; 
+    margin-top: 50px;
+    font-family: 'HelveticaCn';
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.tableau-panier{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 40px;
+}
+
+.list-achat {
+    width: 63%;
+    height: 400px;
+    padding: 10px;
+    box-shadow: 10px 10px 0px 0px #000;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(3px);
+    overflow-y: auto;
+    font-family: 'HelveticaCn';
+    letter-spacing: 1px;
+}
+
+.ticket-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #ffffff;
+}
+
+.ticket-table th, .ticket-table td {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    font-family: 'HelveticaCn';
+    letter-spacing: 1px;
+}
+
+.ticket-table th {
+    background-color: rgba(230, 216, 216, 0.312);
+    color: #ffffff;
+}
+
+.ticket-table tr:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.trash-icon {
+    color: red; 
+    cursor: pointer; 
+    font-size: 1.2em; 
+    transition: color 0.3s ease;
+}
+
+.trash-icon:hover {
+    color: darkred;
+}
+
+
+.amount{
+    width: 30%;
+    height: 100%;  
+    box-shadow: 10px 10px 0px 0px #000;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(3px);
+    padding: 20px;
+}
+
+.amount p {
+    font-family: 'HelveticaCn';
+    letter-spacing: 1px;
+}
+
+.total-article{
+    display: flex;
+    justify-content: space-between;
+}
+
+.passer-caisse{
+    background-color: #ffffff;
+    border: solid 1px black;
+    color: #000000;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    box-shadow: 5px 5px 0px 0px #000;
+    transition: background-color 0.3s; 
+}
+
+.passer-caisse:hover {
+    background-color: #e0e0e0;
+}
