@@ -54,7 +54,7 @@ const NavHeader = () => {
                         to="/Apropos"
                         className='link-custom'    
                     >
-                        <li>A propos</li>
+                        <li>À propos</li>
                     </LinkSimple>
                     <LinkSimple
                         to="/Historique"

@@ -1,5 +1,5 @@
 import './LoginClient.css'
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as loginComponents from '../../componentsClient/componentLogin/Login'
 import Logo from '../../assets/Logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,6 +7,18 @@ import { faGoogle, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import clientApi from '../../api/clientApi';
 
 const LoginClient = () => {
+    const googleAuth = () => {
+        window.location.href = 'http://localhost:5000/auth/google';
+    };
+
+    useEffect(() => {
+        const token = new URLSearchParams(window.location.search).get('token');
+        if (token) {
+            localStorage.setItem('tokenClient', token);
+            window.location.href = '/Accueil';
+        }
+    }, []);
+
     const [signIn, toggle] = useState(true);
 
     // Create account
@@ -152,7 +164,7 @@ const LoginClient = () => {
                             }} />
                         </div>
                 <loginComponents.ApiContainer>
-                    <loginComponents.GoogleButton onClick={handleGoogleLogin}  type="button">
+                    <loginComponents.GoogleButton onClick={googleAuth}  type="button">
                         <FontAwesomeIcon icon={faGoogle} style={{ marginRight: '5px' }} />
                     </loginComponents.GoogleButton>
                     <loginComponents.FacebookButton onClick={handleFacebookLogin}  type="button">
