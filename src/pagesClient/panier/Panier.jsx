@@ -105,13 +105,18 @@ const Panier = () => {
                                         <span>Orange Money</span>
                                     </label>
 
+                                    <input type="radio" name="billet" id="airtel" />
+                                    <label htmlFor="airtel">
+                                        <span>Airtel Money</span>
+                                    </label>
+
                                     <input type="radio" name="billet" id="sumup" />
                                     <label htmlFor="sumup">
                                         <span>SumUp</span>
                                     </label>
                                 </div>
                             </div>
-                            <button className="passer-caisse">Passer en caisse</button>
+                            <button className="passer-caisse">Passer à la caisse</button>
                         </div>
                     </div>
                 </div>

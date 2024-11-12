@@ -44,7 +44,7 @@ const Historique = () => {
         const fetchHistorique = async () => {
             if (user) {
                 try {
-                    const histo = await achatApi.getHistoriqueByClient('Client 7');
+                    const histo = await achatApi.getHistoriqueByClient(user.idclient);
                     setHistorique(histo.data);
                 } catch (error) {
                     console.log(error);

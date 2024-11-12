@@ -1,5 +1,5 @@
 import './LoginClient.css'
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import * as loginComponents from '../../componentsClient/componentLogin/Login'
 import Logo from '../../assets/Logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,16 +8,9 @@ import clientApi from '../../api/clientApi';
 
 const LoginClient = () => {
     const googleAuth = () => {
-        window.location.href = 'http://localhost:5000/auth/google';
+        window.open("http://localhost:5000/auth/google","_self");
     };
 
-    useEffect(() => {
-        const token = new URLSearchParams(window.location.search).get('token');
-        if (token) {
-            localStorage.setItem('tokenClient', token);
-            window.location.href = '/Accueil';
-        }
-    }, []);
 
     const [signIn, toggle] = useState(true);
 

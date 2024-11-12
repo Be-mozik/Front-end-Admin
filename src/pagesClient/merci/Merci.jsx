@@ -9,7 +9,7 @@ const Merci = () => {
             <div className="merci-container">
                 <Header/>
                 <div className="merci-content">
-                    <h1>MISAOTRA</h1>
+                    <h1>MISAOTRA TOMPOKO</h1>
                     <p>
                         Merci pour votre achat ! Nous vous souhaitons une ambiance des plus festives !
                     </p>

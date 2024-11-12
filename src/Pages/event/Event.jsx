@@ -141,7 +141,7 @@ const Event = () => {
                             {
                                 dataTarif.map((val, i) => (
                                     <div className="billet" key={i}>
-                                        <input type="text" name='nombillet' placeholder="Nom du billet" value={val.nombillet} onChange={(e) => handleChangeTarif(e, i)} />
+                                        <input type="text" name='nombillet' placeholder="Type de billet" value={val.nombillet} onChange={(e) => handleChangeTarif(e, i)} />
                                         <input type="number" name='tarifbillet' placeholder="Tarif" value={val.tarifbillet} onChange={(e) => handleChangeTarif(e, i)} />
                                         <select name="devis" value={val.devis} onChange={(e) => handleChangeTarif(e, i)}>
                                             <option defaultValue="Devis">Devis</option>
@@ -162,13 +162,13 @@ const Event = () => {
                                 dataInfo.map((val, j) => (
                                     <div className="info" key={j}>
                                         <input type="number" placeholder="Numéro de téléphone" name='numeroinfo' value={val.numeroinfo} onChange={(e) => handleChangeInfo(e, j)} />
-                                        <input type="text" placeholder="Nom de la personne" name='nominfo' value={val.nominfo} onChange={(e) => handleChangeInfo(e, j)} />
+                                        <input type="text" placeholder="Nom" name='nominfo' value={val.nominfo} onChange={(e) => handleChangeInfo(e, j)} />
                                         <BsFillPlusSquareFill className="icon-plus" onClick={handleClickInfo} />
                                         <AiFillMinusSquare className='icon-moins' onClick={handleDeleteInfo} />
                                     </div>
                                 ))
                             }
-                            <textarea placeholder='Description du show' value={descrievenement} onChange={(e)=>setDescrievenement(e.target.value)}></textarea>
+                            <textarea placeholder={`Description de l'événement`} value={descrievenement} onChange={(e)=>setDescrievenement(e.target.value)}></textarea>
                             <input type="file" className="upload-file" onChange={(e) => setPhoto(e.target.files[0])}/>
                         </div>
                         <div className="btn-btn-valider">

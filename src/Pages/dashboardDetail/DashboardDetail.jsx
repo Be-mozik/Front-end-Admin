@@ -189,7 +189,7 @@
                     }
                     <div className="detail-event">
                         <div className="titre-detail">
-                            Details événement
+                            Details de l'événement
                         </div>
                         <div className="container-event">
                             { event ? (

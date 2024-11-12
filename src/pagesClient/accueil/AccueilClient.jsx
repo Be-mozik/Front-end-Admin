@@ -4,9 +4,24 @@ import Bloc from "../../componentsClient/bloc/Bloc";
 import eventApi from '../../api/eventApi';
 import { useEffect, useState } from 'react';
 import FooterClient from "../../componentsClient/footer/FooterClient";
+import { useNavigate } from 'react-router-dom';
 
 const AccueilClient = () => {
     const [event, setEvent] = useState([]);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        const token = params.get('token');
+
+        console.log("Token from URL:", token);
+
+        if (token) {
+            localStorage.setItem('tokenClient', token);
+            navigate('/Accueil');
+        }
+    }, [navigate]); 
+    
 
     useEffect(() => {
         const fetchEvent = async () => {

@@ -263,7 +263,7 @@ const Dashboard  = () => {
                         + {eventS?.increase ?? 0.0}% ces 30 derniers jours
                     </BlocInfo>
                     <BlocInfo>
-                        Vente de billet total
+                        Billets vendus
                         <span>{achatS.nb_achat}</span>
                         <hr />
                         + {achatS.increase}% ces 30 derniers jours
