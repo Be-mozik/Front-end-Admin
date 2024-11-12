@@ -331,10 +331,10 @@ const Dashboard  = () => {
                                         <td>{e.formattedDate}</td>
                                         <td>{e.lieuevenement}</td>
                                         <td>
-                                        {e.etat === "À venir" ? (
+                                        {e.idetat === 1 ? (
                                             <span style={{ color: '#2ACD30' }}>À venir</span>
                                         ) : (
-                                            <span style={{ color: '#FF0000' }}>{e.etat}</span>
+                                            <span style={{ color: '#FF0000' }}>{e.nometat}</span>
                                         )}
                                         </td>
                                         <td>
