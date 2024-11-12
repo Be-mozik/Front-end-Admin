@@ -11,6 +11,9 @@ const LoginClient = () => {
         window.open("http://localhost:5000/auth/google","_self");
     };
 
+    const facebookAuth = () => {
+        window.open("http://localhost:5000/auth/facebook","_self");
+    };
 
     const [signIn, toggle] = useState(true);
 
@@ -27,14 +30,6 @@ const LoginClient = () => {
 
     const [error , setError] = useState(null);
     const [success, setSuccess] = useState(null);
-
-    const handleGoogleLogin = () => {
-        console.log("Google api");
-    }
-
-    const handleFacebookLogin = () => {
-        console.log("FB Api");
-    }
 
     const handleSignUpSubmit = async (event) => {
         event.preventDefault();
@@ -124,10 +119,10 @@ const LoginClient = () => {
                                 }} />
                             </div>
                 <loginComponents.ApiContainer>
-                    <loginComponents.GoogleButton onClick={handleGoogleLogin}  type="button">
+                    <loginComponents.GoogleButton onClick={googleAuth} type="button">
                         <FontAwesomeIcon icon={faGoogle} />
                     </loginComponents.GoogleButton>
-                    <loginComponents.FacebookButton onClick={handleFacebookLogin} type="button">
+                    <loginComponents.FacebookButton onClick={facebookAuth} type="button">
                         <FontAwesomeIcon icon={faFacebook} />
                     </loginComponents.FacebookButton>
                 </loginComponents.ApiContainer>
@@ -160,7 +155,7 @@ const LoginClient = () => {
                     <loginComponents.GoogleButton onClick={googleAuth}  type="button">
                         <FontAwesomeIcon icon={faGoogle} style={{ marginRight: '5px' }} />
                     </loginComponents.GoogleButton>
-                    <loginComponents.FacebookButton onClick={handleFacebookLogin}  type="button">
+                    <loginComponents.FacebookButton onClick={facebookAuth}  type="button">
                         <FontAwesomeIcon icon={faFacebook} style={{ marginRight: '5px' }} />
                     </loginComponents.FacebookButton>
                 </loginComponents.ApiContainer>

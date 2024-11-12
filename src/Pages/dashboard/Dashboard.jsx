@@ -331,14 +331,11 @@ const Dashboard  = () => {
                                         <td>{e.formattedDate}</td>
                                         <td>{e.lieuevenement}</td>
                                         <td>
-                                        {
-                                            !e.estvalide ? (
-                                                <span style={{ color: '#FF0000' }}>Passé</span>
-                                            ): (
-                                                <span style={{ color: '#2ACD30' }}>À venir</span>
-
-                                            )
-                                        }
+                                        {e.etat === "À venir" ? (
+                                            <span style={{ color: '#2ACD30' }}>À venir</span>
+                                        ) : (
+                                            <span style={{ color: '#FF0000' }}>{e.etat}</span>
+                                        )}
                                         </td>
                                         <td>
                                             <span className="actions">

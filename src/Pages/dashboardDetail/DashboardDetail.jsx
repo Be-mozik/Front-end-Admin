@@ -235,11 +235,10 @@
                                     <hr />
                                     <div className="event-detail">
                                         <span>Statut: </span>
-                                        {( event.estvalide ? (
+                                        {event.etat === "À venir" ? (
                                             <span style={{ color: '#2ACD30' }}>À venir</span>
-                                            ) : (
-                                            <span style={{ color: '#FF0000' }}>Passé</span>
-                                            )
+                                        ) : (
+                                            <span style={{ color: '#FF0000' }}>{event.etat}</span>
                                         )}
                                     </div>
                                     <div className="event-detail">
