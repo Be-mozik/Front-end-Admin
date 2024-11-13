@@ -1,7 +1,7 @@
 import axios from "axios";
 import {jwtDecode} from "jwt-decode";
 const userBaseUrl = 'http://localhost:5000/api/utilisateur';
-
+const token = localStorage.getItem('token');
 const utilisateurApi = {
     connexion: async (data) =>{
         try {
@@ -44,7 +44,11 @@ const utilisateurApi = {
 
     aproveDemande: async (id) => {
         try {
-            const notif = await axios.get(`${userBaseUrl}/approuver/${id}`);
+            const notif = await axios.get(`${userBaseUrl}/approuver/${id}`,{
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             return notif.data;
         } catch (error) {
             console.error('Erreur lors de la requete: ',error);
