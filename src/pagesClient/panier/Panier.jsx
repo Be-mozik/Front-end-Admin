@@ -3,9 +3,44 @@ import NavHeader from '../../componentsClient/nav_header/NavHeader';
 import FooterClient from '../../componentsClient/footer/FooterClient';
 import { FiTrash } from "react-icons/fi";
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import achatApi from '../../api/achatApi';
+import clientApi from '../../api/clientApi';
+
+
 
 const Panier = () => {
     const [cartItems, setCartItems] = useState([]);
+    const [user, setUser] = useState(null);
+    const navigate = useNavigate();
+
+
+    const handleDeco = async () => {
+        try {
+            await clientApi.deconnexionClient();
+            navigate('/Connexion');
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        const fetchClientProfile = async () => {
+            try {
+                const token = 'tokenClient';
+                const decoded = await clientApi.getProfileClient(token);
+                if (decoded) {                    
+                    setUser(decoded);
+                } else {
+                    console.log('Token non trouvé');
+                    await handleDeco();
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        fetchClientProfile();
+    }, []);
 
     useEffect(() => {
         const fetchCartItems = () => {
@@ -44,6 +79,55 @@ const Panier = () => {
             maximumFractionDigits: 2,
         }).format(amount);
     };
+
+    const handleCheckOut = async () => {
+        try {
+            const cart = JSON.parse(localStorage.getItem('cart'));
+            if(cart.length ===0){
+                alert('Votre panier est vide');
+                return;
+            }
+            for(const item of cart){
+                const data= {
+                    idclient: user.idclient,
+                    idevenement: item.eventId,
+                    idbillet: item.billetId,
+                    nombre: item.quantity
+                }
+                console.log(data);
+                try {
+                    const response = await achatApi.achatBillet(data);
+                    console.log(response);
+                    const blob = new Blob([response.data], { type: 'application/pdf' });
+                    const url = window.URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = url;
+                    const contentDisposition = response.headers['content-disposition'];
+                    let filename = `${item.eventName}-${item.billetName}.pdf`;
+    
+                    if (contentDisposition) {
+                        const match = contentDisposition.match(/filename="(.+)"/);
+                        if (match && match[1]) {
+                            filename = match[1];
+                        }
+                    }
+                    link.setAttribute('download', filename);
+                    document.body.appendChild(link);
+                    link.click();
+                    link.remove();
+                    window.URL.revokeObjectURL(url);
+                } catch (error) {
+                    console.log(error);
+                    console.error(`Échec de l'achat pour ${item.eventName} - ${item.billetName}`);
+                }
+            }
+            localStorage.removeItem('cart');
+            navigate('/Merci');
+        } catch (error) {
+            console.error("Erreur générale :", error.message);
+            alert("Une erreur s'est produite lors du processus de paiement.");
+        }
+    }
 
     return(
         <>
@@ -116,7 +200,7 @@ const Panier = () => {
                                     </label>
                                 </div>
                             </div>
-                            <button className="passer-caisse">Passer à la caisse</button>
+                            <button className="passer-caisse" onClick={handleCheckOut}>Passer à la caisse</button>
                         </div>
                     </div>
                 </div>

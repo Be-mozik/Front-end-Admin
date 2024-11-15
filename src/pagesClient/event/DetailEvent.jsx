@@ -111,7 +111,7 @@ const DetailEvent = () => {
             <div className="event-details-section">
                 <h2 className="event-title">{event.nomevenement}</h2>
                 <p className="event-description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                    {event.descrievenement}
                 </p>
                 <div className="information-event">
                     <div>

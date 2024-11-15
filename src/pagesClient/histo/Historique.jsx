@@ -27,7 +27,6 @@ const Historique = () => {
                 const token = 'tokenClient';
                 const decoded = await clientApi.getProfileClient(token);
                 if (decoded) {
-                    console.log(decoded);
                     setUser(decoded);
                 } else {
                     console.log('Token non trouvé');

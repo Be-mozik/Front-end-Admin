@@ -13,9 +13,6 @@ const AccueilClient = () => {
     useEffect(() => {
         const params = new URLSearchParams(window.location.search);
         const token = params.get('token');
-
-        console.log("Token from URL:", token);
-
         if (token) {
             localStorage.setItem('tokenClient', token);
             navigate('/Accueil');
@@ -26,7 +23,7 @@ const AccueilClient = () => {
     useEffect(() => {
         const fetchEvent = async () => {
             try {
-                const rep = await eventApi.getEvents();
+                const rep = await eventApi.eventValide();
                 setEvent(rep.data);
             } catch (error) {
                 console.log('Erreur lors de la récupération des events');
@@ -67,7 +64,7 @@ const AccueilClient = () => {
                             )}
                         </div>
                     </div>
-                    <div className="artistes">
+                    {/* <div className="artistes">
                         <div className="title">
                             <h1>Artistes</h1>
                             <p>Faites défiler horizontalement pour voir plus d'artistes</p>
@@ -85,7 +82,7 @@ const AccueilClient = () => {
                                 ))
                             )}
                         </div>
-                    </div>
+                    </div> */}
             </div>
             <FooterClient />
         </>

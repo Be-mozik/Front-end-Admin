@@ -2,7 +2,8 @@ import axios from "axios";
 
 const eventBaseUrl = 'http://localhost:5000/api/event';
 
-const token = localStorage.getItem('token'); 
+const token = localStorage.getItem('token');
+const tokenClient = localStorage.getItem('tokenClient');
 const eventApi = {
     creerEvent: async (data) =>{
         try {
@@ -66,6 +67,16 @@ const eventApi = {
             return rep;
         } catch (error) {
             console.error('Erreur: ',error.response.data);
+        }
+    },
+
+    eventValide: async () => {
+        try {
+            const response = await axios.get(`${eventBaseUrl}/evenement`);
+            return response;
+        } catch (error) {
+            console.error('Erreur lors de la récupération des événements:', error);
+            throw error;
         }
     }
 }
