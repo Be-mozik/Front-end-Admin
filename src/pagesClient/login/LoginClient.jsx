@@ -8,11 +8,11 @@ import clientApi from '../../api/clientApi';
 
 const LoginClient = () => {
     const googleAuth = () => {
-        window.open("http://localhost:5000/auth/google","_self");
+        window.open("https://back-end-wxii.onrender.com/auth/google","_self");
     };
 
     const facebookAuth = () => {
-        window.open("http://localhost:5000/auth/facebook","_self");
+        window.open("https://back-end-wxii.onrender.com/auth/facebook","_self");
     };
 
     const [signIn, toggle] = useState(true);
