@@ -57,7 +57,7 @@ const AccueilClient = () => {
                                 event.map((ev, index) => (
                                       <Bloc 
                                         idevenement={ev.idevenement}
-                                        imageSrc={`http://localhost:5000/uploads/${ev.imgevenement}`} 
+                                        imageSrc={`https://back-end-wxii.onrender.com/uploads/${ev.imgevenement}`} 
                                         alt={ev.imagevenement} 
                                       />
                                 ))

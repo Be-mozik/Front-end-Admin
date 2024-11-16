@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const achatBaseUrl = 'https://back-end-wxii.onrender.com/api/achat';
+const achatBaseUrl = 'http://localhost:5000/api/achat';
+// const achatBaseUrl = 'https://back-end-wxii.onrender.com/api/achat';
 const tokenClient = localStorage.getItem('tokenClient');
 const achatApi = {
     getHistoriqueByClient: async (id) => {

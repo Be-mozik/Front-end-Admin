@@ -21,7 +21,7 @@ const Login = () => {
             const rep = await utilisateur.connexion(data);
             if (rep) {
                 localStorage.setItem('token', rep.token);
-                window.location.href = '/Dashboard';
+                window.location.href = '/dashboard';
             } else {
                 setError('Aucun token reçu, problème de connexion.');
             }
