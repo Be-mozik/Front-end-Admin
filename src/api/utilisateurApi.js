@@ -1,6 +1,6 @@
 import axios from "axios";
 import {jwtDecode} from "jwt-decode";
-const userBaseUrl = 'http://localhost:5000/api/utilisateur';
+const userBaseUrl = 'https://back-end-wxii.onrender.com/api/utilisateur';
 const token = localStorage.getItem('token');
 const utilisateurApi = {
     connexion: async (data) =>{

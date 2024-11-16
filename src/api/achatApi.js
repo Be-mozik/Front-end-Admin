@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const achatBaseUrl = 'http://localhost:5000/api/achat';
+const achatBaseUrl = 'https://back-end-wxii.onrender.com/api/achat';
 const tokenClient = localStorage.getItem('tokenClient');
 const achatApi = {
     getHistoriqueByClient: async (id) => {
@@ -13,12 +13,7 @@ const achatApi = {
     },
     achatBillet: async (data) =>{
         try {
-            const achat = await axios.post(`${achatBaseUrl}/acheter`, data, {
-                headers: {
-                    Authorization: `Bearer ${tokenClient}`
-                },
-                responseType: 'blob',
-            });
+            const achat = await axios.post(`${achatBaseUrl}/acheter`, data);
             return achat;            
         } catch (error) {
             throw error;

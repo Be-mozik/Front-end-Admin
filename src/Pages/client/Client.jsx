@@ -12,6 +12,8 @@ import moment from 'moment'
 const Client = () => {
     const [openDrop,setOpenDrop] = useState(false);
     const [client, setClient] = useState([]);
+    const [sortConfig, setSortConfig] = useState({ key: 'idclient', direction: 'asc' });
+
 
     const fetchDataClient = async () => {
         try {
@@ -29,6 +31,33 @@ const Client = () => {
     const handleClickDrop = () =>{
         setOpenDrop(false);
     }
+
+    const sortTable = (array, config) => {
+        const sortedArray = [...array];
+        if (config.key) {
+            sortedArray.sort((a, b) => {
+                if (a[config.key] < b[config.key]) {
+                    return config.direction === 'asc' ? -1 : 1;
+                }
+                if (a[config.key] > b[config.key]) {
+                    return config.direction === 'asc' ? 1 : -1;
+                }
+                return 0;
+            });
+        }
+        return sortedArray;
+    };
+    
+    const handleSort = (key) => {
+        let direction = 'asc';
+        if (sortConfig.key === key && sortConfig.direction === 'asc') {
+            direction = 'desc';
+        }
+        setSortConfig({ key, direction });
+    };
+    
+    const sortedClient = sortTable(client, sortConfig);
+
 
     return (
         <>
@@ -50,16 +79,24 @@ const Client = () => {
                     <Table
                         childrenHead={
                             <tr>
-                                <th>ID</th>
-                                <th>Nom</th>
-                                <th>Email</th>
-                                <th>Depuis</th>
+                                <th>
+                                    ID 
+                                </th>
+                                <th onClick={() => handleSort('nomclient')}>
+                                    Nom {sortConfig.key === 'nomclient' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                                </th>
+                                <th onClick={() => handleSort('mailclient')}>
+                                    Email {sortConfig.key === 'mailclient' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                                </th>
+                                <th onClick={() => handleSort('dateclient')}>
+                                    Depuis {sortConfig.key === 'dateclient' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                                </th>
                                 <th>Historique</th>
                             </tr>
                         }
                         childrenBody={
                             <>
-                                { client.map((c) =>(
+                                { sortedClient.map((c) =>(
                                     <tr key={c.idclient}>
                                         <td>{c.idclient}</td>
                                         <td>{c.nomclient} {c.prenomclient}</td>

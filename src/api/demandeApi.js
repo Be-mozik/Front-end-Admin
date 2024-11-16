@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const demandeBaseUrl = 'http://localhost:5000/api/demande';
+const demandeBaseUrl = 'https://back-end-wxii.onrender.com/api/demande';
 
 const demandeApi = {
     demander: async (data) =>{

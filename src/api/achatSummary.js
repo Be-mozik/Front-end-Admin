@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const achatSBaseUrl = 'http://localhost:5000/api/achatS';
+const achatSBaseUrl = 'https://back-end-wxii.onrender.com/api/achatS';
 
 const achatSApi = {
     getAchatS: async () => {

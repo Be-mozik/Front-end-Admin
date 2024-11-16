@@ -23,6 +23,7 @@ const Permission = () => {
 
     const [message,setMessage] = useState(null);
     const [error,setError] = useState(null);
+    const [sortConfig, setSortConfig] = useState({ key: '', direction: 'asc' });
 
     const handleClickDrop = () =>{
         setOpenDrop(false);
@@ -122,9 +123,43 @@ const Permission = () => {
         }
     }
 
+    const handleSuccess = (message) => {
+        setMessage(message);
+        setTimeout(() => {
+            setMessage(null);
+        }, 5000);
+    }
+
     const CloseModalUser = () => {
         setModalOpenUser(false);
     }
+
+    const sortTable = (array, config) => {
+        const sortedArray = [...array];
+        if (config.key) {
+            sortedArray.sort((a, b) => {
+                if (a[config.key] < b[config.key]) {
+                    return config.direction === 'asc' ? -1 : 1;
+                }
+                if (a[config.key] > b[config.key]) {
+                    return config.direction === 'asc' ? 1 : -1;
+                }
+                return 0;
+            });
+        }
+        return sortedArray;
+    };
+    
+    const handleSort = (key) => {
+        let direction = 'asc';
+        if (sortConfig.key === key && sortConfig.direction === 'asc') {
+            direction = 'desc';
+        }
+        setSortConfig({ key, direction });
+    };
+    
+    const sortedDemande = sortTable(demandes, sortConfig);
+    const sortedUser = sortTable(users, sortConfig);
 
     return(
         <>
@@ -156,16 +191,24 @@ const Permission = () => {
                         <Table 
                             childrenHead={
                             <tr>
-                                <th>ID</th>
-                                <th>Nom</th>
-                                <th>Mail</th>
-                                <th>Date demande</th>
+                                <th onClick={() => handleSort('iddemande')}>
+                                    ID {sortConfig.key === 'iddemande' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                                </th>
+                                <th onClick={() => handleSort('prenomdemande')}>
+                                    Nom {sortConfig.key === 'prenomdemande' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                                </th>
+                                <th onClick={() => handleSort('maildemande')}>
+                                    Mail {sortConfig.key === 'maildemande' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                                </th>
+                                <th onClick={() => handleSort('datedemande')}>
+                                    Date demande {sortConfig.key === 'datedemande' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                                </th>
                                 <th>Actions</th>
                             </tr>
                             }
                             childrenBody={
                                 <>
-                                { demandes.map((demande) => (
+                                { sortedDemande.map((demande) => (
                                     <tr key={demande.iddemande}>
                                         <td>{demande.iddemande}</td>
                                         <td>{demande.prenomdemande}</td>
@@ -175,13 +218,13 @@ const Permission = () => {
                                             <span className="actions">
                                             <BsPersonFillCheck className="accepted" onClick={() => OpenAcceptClick(demande.iddemande)}/>
                                                 {modalOpenAccept === `accept-${demande.iddemande}` &&(
-                                                    <ModalDelete onSubmit={() => ApprouverDemande(demande.iddemande)} onCancel={CloseAcceptClick} onClose={CloseAcceptClick}>
+                                                    <ModalDelete onSubmit={() => ApprouverDemande(demande.iddemande)} onCancel={CloseAcceptClick} onClose={CloseAcceptClick} onSuccess={handleSuccess}>
                                                         <p>Êtes-vous sûr de vouloir accepter la demande de {demande.prenomdemande} ?</p>
                                                     </ModalDelete>
                                                 )}
                                                 <BsFillTrashFill className="deleted" onClick={() => OpenDeleteClick(demande.iddemande)}/>
                                                 {modalOpenDelete === `delete-${demande.iddemande}` && (
-                                                    <ModalDelete onSubmit={() => SupprimerDemande(demande.iddemande)} onCancel={CloseDeleteClick} onClose={CloseDeleteClick}>
+                                                    <ModalDelete onSubmit={() => SupprimerDemande(demande.iddemande)} onCancel={CloseDeleteClick} onClose={CloseDeleteClick} onSuccess={handleSuccess}>
                                                         <p>Êtes-vous sûr de vouloir supprimer la demande de {demande.prenomdemande} ?</p>
                                                     </ModalDelete>
                                                 )}
@@ -201,16 +244,24 @@ const Permission = () => {
                         <Table 
                             childrenHead={
                             <tr>
-                                <th>ID</th>
-                                <th>Nom</th>
-                                <th>Mail</th>
-                                <th>Depuis</th>
+                                <th>
+                                    ID
+                                </th>
+                                <th onClick={() => handleSort('prenomutilisateur')}>
+                                    Nom {sortConfig.key === 'prenomutilisateur' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                                </th>
+                                <th onClick={() => handleSort('mailutilisateur')}>
+                                    Mail {sortConfig.key === 'mailutilisateur' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                                </th>
+                                <th onClick={() => handleSort('depuisutilisateur')}>
+                                    Depuis {sortConfig.key === 'depuisutilisateur' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                                </th>
                                 <th>Actions</th>
                             </tr>
                             }
                             childrenBody={
                                 <>
-                                { users.map((utilisateur) =>( 
+                                { sortedUser.map((utilisateur) =>( 
                                     <tr key={utilisateur.idutilisateur}>
                                         <td>{utilisateur.idutilisateur}</td>
                                         <td>{utilisateur.prenomutilisateur}</td>

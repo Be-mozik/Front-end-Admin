@@ -88,7 +88,6 @@ const DetailEvent = () => {
             } else {
                 alert(disponibilite.data.message);
             }
-
         } catch (error) {
             console.log(error);
             

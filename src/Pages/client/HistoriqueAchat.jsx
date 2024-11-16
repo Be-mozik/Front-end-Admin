@@ -2,7 +2,7 @@ import './HistoriqueAchat.css'
 import Sidebar from '../../components/sidebar/Sidebar'
 import { MdAccountCircle } from "react-icons/md"
 import DropdwnUser from '../../components/dropdown/DropdownUser'
-import { useEffect, useState,useCallback } from 'react'
+import { useEffect, useState } from 'react'
 import Table from '../../components/table/Table'
 import { useParams } from 'react-router-dom'
 import achatApi from '../../api/achatApi'
@@ -14,6 +14,8 @@ const HistoriqueAchat = () => {
     const [openDrop,setOpenDrop] = useState(false);
     const [achat, setAchat] =useState([]);
     const [client,setClient] = useState(null);
+    const [sortConfig, setSortConfig] = useState({ key: 'datetransaction', direction: 'asc' });
+
 
     useEffect(() => {
         const fetchDataClient = async () => {
@@ -46,6 +48,32 @@ const HistoriqueAchat = () => {
         setOpenDrop(false);
     }
 
+    const sortTable = (array, config) => {
+        const sortedArray = [...array];
+        if (config.key) {
+            sortedArray.sort((a, b) => {
+                if (a[config.key] < b[config.key]) {
+                    return config.direction === 'asc' ? -1 : 1;
+                }
+                if (a[config.key] > b[config.key]) {
+                    return config.direction === 'asc' ? 1 : -1;
+                }
+                return 0;
+            });
+        }
+        return sortedArray;
+    };
+    
+    const handleSort = (key) => {
+        let direction = 'asc';
+        if (sortConfig.key === key && sortConfig.direction === 'asc') {
+            direction = 'desc';
+        }
+        setSortConfig({ key, direction });
+    };
+    
+    const sortHistorique = sortTable(achat, sortConfig);
+
 
     return(
         <>
@@ -67,16 +95,26 @@ const HistoriqueAchat = () => {
                     <Table
                         childrenHead={
                             <tr>
-                                <th>Event</th>
-                                <th>Billet</th>
-                                <th>Nombre</th>
-                                <th>Montant</th>
-                                <th>Transaction</th>
+                                <th onClick={() => handleSort('nomevenement')}>
+                                    Event {sortConfig.key === 'nomevenement' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                                </th>
+                                <th onClick={() => handleSort('nombillet')}>
+                                    Billet {sortConfig.key === 'nombillet' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                                </th>
+                                <th onClick={() => handleSort('nombre')}>
+                                    Nombre {sortConfig.key === 'nombre' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                                </th>
+                                <th>
+                                    Montant
+                                </th>
+                                <th onClick={() => handleSort('datetransaction')}>
+                                    Transaction {sortConfig.key === 'datetransaction' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                                </th>
                             </tr>
                         }
                         childrenBody={
                             <>
-                              { achat.map((a) => (
+                              { sortHistorique.map((a) => (
                                 <tr key={a.tokenachat}>
                                     <td>{a.nomevenement}</td>
                                     <td>{a.nombillet}</td>

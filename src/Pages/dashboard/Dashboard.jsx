@@ -46,6 +46,7 @@ const Dashboard  = () => {
     const [chartData2,setChartData2] = useState({});
     const [years2,setYears2] = useState([]);
     const [selectedYear2, setSelectedYear2] = useState(null);
+    const [sortConfig, setSortConfig] = useState({ key: 'idevenement', direction: 'asc' });
 
 
     const fetchDataEvent = async () => {
@@ -141,6 +142,32 @@ const Dashboard  = () => {
     const handleClickDrop = () =>{
         setOpenDrop(false);
     }
+
+    const sortTable = (array, config) => {
+        const sortedArray = [...array];
+        if (config.key) {
+            sortedArray.sort((a, b) => {
+                if (a[config.key] < b[config.key]) {
+                    return config.direction === 'asc' ? -1 : 1;
+                }
+                if (a[config.key] > b[config.key]) {
+                    return config.direction === 'asc' ? 1 : -1;
+                }
+                return 0;
+            });
+        }
+        return sortedArray;
+    };
+    
+    const handleSort = (key) => {
+        let direction = 'asc';
+        if (sortConfig.key === key && sortConfig.direction === 'asc') {
+            direction = 'desc';
+        }
+        setSortConfig({ key, direction });
+    };
+    
+    const sortedEvents = sortTable(formattedEvents, sortConfig);
 
     const fetchChartData = async (year) => {
         try {
@@ -248,10 +275,13 @@ const Dashboard  = () => {
                     </BlocInfo>
                     <BlocInfo>
                         C.A Total
-                        <span>{parseFloat(caS.montant).toLocaleString('fr-FR', { 
-                                minimumFractionDigits: 1, 
-                                maximumFractionDigits: 1 
-                            }).replace(/ /g, '.')} Ar
+                        <span>
+                        {parseFloat(caS.montant || 0)
+                        .toLocaleString('fr-FR', {
+                        minimumFractionDigits: 1,
+                        maximumFractionDigits: 1,
+                        })
+                        .replace(/ /g, '.')} Ar
                         </span>
                         <hr />
                         + {caS.augmentation}% ces 30 derniers jours
@@ -314,17 +344,27 @@ const Dashboard  = () => {
                         <Table 
                             childrenHead={
                             <tr>
-                                <th>ID</th>
-                                <th>Event</th>
-                                <th>Date</th>
-                                <th>Lieu</th>
-                                <th>Statut</th>
+                                <th onClick={() => handleSort('idevenement')}>
+                                    ID {sortConfig.key === 'idevenement' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                                </th>
+                                <th onClick={() => handleSort('nomevenement')}>
+                                    Event {sortConfig.key === 'nomevenement' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                                </th>
+                                <th onClick={() => handleSort('formattedDate')}>
+                                    Date {sortConfig.key === 'formattedDate' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                                </th>
+                                <th onClick={() => handleSort('lieuevenement')}>
+                                    Lieu {sortConfig.key === 'lieuevenement' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                                </th>
+                                <th onClick={() => handleSort('idetat')}>
+                                    Statut {sortConfig.key === 'idetat' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                                </th>
                                 <th>Details</th>
                             </tr>
                             }
                             childrenBody={
                             <>
-                                { formattedEvents.map((e)=> (
+                                { sortedEvents.map((e)=> (
                                     <tr key={e.idevenement}>
                                         <td>{e.idevenement}</td>
                                         <td>{e.nomevenement}</td>

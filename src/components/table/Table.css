@@ -19,8 +19,10 @@
 .table-dash thead{
     background-color: #FCFAFA;
     color: black;
+    cursor: pointer;
 
 }
+
 
 .table-dash th,
 .table-dash td {

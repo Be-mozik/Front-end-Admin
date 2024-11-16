@@ -11,6 +11,7 @@ const Historique = () => {
     const [user, setUser] = useState(null);
     const [historique, setHistorique] = useState([]);
     const navigate = useNavigate();
+    const [sortConfig, setSortConfig] = useState({ key: 'datetransaction', direction: 'asc' });
 
     const handleDeco = async () => {
         try {
@@ -53,6 +54,32 @@ const Historique = () => {
         fetchHistorique();
     }, [user]);
 
+    const sortTable = (array, config) => {
+        const sortedArray = [...array];
+        if (config.key) {
+            sortedArray.sort((a, b) => {
+                if (a[config.key] < b[config.key]) {
+                    return config.direction === 'asc' ? -1 : 1;
+                }
+                if (a[config.key] > b[config.key]) {
+                    return config.direction === 'asc' ? 1 : -1;
+                }
+                return 0;
+            });
+        }
+        return sortedArray;
+    };
+    
+    const handleSort = (key) => {
+        let direction = 'asc';
+        if (sortConfig.key === key && sortConfig.direction === 'asc') {
+            direction = 'desc';
+        }
+        setSortConfig({ key, direction });
+    };
+    
+    const sortHistorique = sortTable(historique, sortConfig); // Trier l'historique avec la configuration actuelle
+
     return (
         <>
             <div className="histo-container">
@@ -67,23 +94,32 @@ const Historique = () => {
                         <table className="table-histo">
                             <thead>
                                 <tr>
-                                    <th>Event</th>
-                                    <th>Nom du billet</th>
-                                    <th>Quantité</th>
-                                    <th>Prix</th>
-                                    <th>Transaction</th>
+                                    <th onClick={() => handleSort('nomevenement')}>
+                                        Event {sortConfig.key === 'nomevenement' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                                    </th>
+                                    <th onClick={() => handleSort('nombillet')}>
+                                        Billet {sortConfig.key === 'nombillet' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                                    </th>
+                                    <th onClick={() => handleSort('nombre')}>
+                                        Nombre {sortConfig.key === 'nombre' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                                    </th>
+                                    <th>
+                                        Montant
+                                    </th>
+                                    <th onClick={() => handleSort('datetransaction')}>
+                                        Transaction {sortConfig.key === 'datetransaction' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {historique.length > 0 ? (
-                                    historique.map((historique, index) => (
+                                {sortHistorique.length > 0 ? (
+                                    sortHistorique.map((historique, index) => (  // Utiliser sortHistorique ici
                                         <tr key={index}>
                                             <td>{historique.nomevenement}</td>
                                             <td>{historique.nombillet}</td>
                                             <td>{historique.nombre}</td>
                                             <td>{parseFloat(historique.montant).toLocaleString('fr-FR', { minimumFractionDigits: 2 })} Ar</td>
                                             <td>{moment.tz(historique.datetransaction, 'Asia/Baghdad').format('DD-MM-YYYY à HH:mm')}</td>
-
                                         </tr>
                                     ))
                                 ) : (

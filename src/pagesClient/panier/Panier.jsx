@@ -94,17 +94,14 @@ const Panier = () => {
                     idbillet: item.billetId,
                     nombre: item.quantity
                 }
-                console.log(data);
                 try {
                     const response = await achatApi.achatBillet(data);
-                    console.log(response);
                     const blob = new Blob([response.data], { type: 'application/pdf' });
                     const url = window.URL.createObjectURL(blob);
                     const link = document.createElement('a');
                     link.href = url;
                     const contentDisposition = response.headers['content-disposition'];
                     let filename = `${item.eventName}-${item.billetName}.pdf`;
-    
                     if (contentDisposition) {
                         const match = contentDisposition.match(/filename="(.+)"/);
                         if (match && match[1]) {

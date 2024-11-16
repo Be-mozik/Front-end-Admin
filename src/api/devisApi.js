@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const devisBaseUrl = 'http://localhost:5000/api/devis';
+const devisBaseUrl = 'https://back-end-wxii.onrender.com/api/devis';
 
 const devisApi = {
     getDevis: async () => {

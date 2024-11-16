@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const graphBaseUrl = 'http://localhost:5000/api/achatS/';
+const graphBaseUrl = 'https://back-end-wxii.onrender.com/api/achatS/';
 
 const graphApi = {
     
