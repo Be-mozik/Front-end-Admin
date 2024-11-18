@@ -5,12 +5,15 @@ import { MdEmail } from "react-icons/md"
 import { RiLockPasswordFill } from "react-icons/ri"
 import { Link } from "react-router-dom"
 import utilisateur from "../../api/utilisateurApi"
+import { useNavigate } from 'react-router-dom';
+
 
 const Login = () => {
     const [mail,setMail] = useState('');
     const [pass,setPass] = useState('');
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     const handleLoading = async (e) => {
         e.preventDefault();
@@ -21,7 +24,7 @@ const Login = () => {
             const rep = await utilisateur.connexion(data);
             if (rep) {
                 localStorage.setItem('token', rep.token);
-                window.location.href = '/dashboard';
+                navigate('/Dashboard');
             } else {
                 setError('Aucun token reçu, problème de connexion.');
             }
