@@ -14,9 +14,13 @@ const achatApi = {
     },
     achatBillet: async (data) =>{
         try {
-            const achat = await axios.post(`${achatBaseUrl}/acheter`, data);
+            const achat = await axios.post(`${achatBaseUrl}/acheter`, data,{
+                responseType: 'blob'
+            });
             return achat;            
         } catch (error) {
+            console.log(error);
+            
             throw error;
         }
    

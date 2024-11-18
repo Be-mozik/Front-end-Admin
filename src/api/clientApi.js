@@ -1,7 +1,9 @@
 import axios from "axios";
 import {jwtDecode} from "jwt-decode";
 
-const clientBaseUrl = 'https://back-end-wxii.onrender.com/api/client';
+// const clientBaseUrl = 'https://back-end-wxii.onrender.com/api/client';
+const clientBaseUrl = 'http://localhost:5000/api/client';
+
 
 const clientApi = {
     getClient: async () => {

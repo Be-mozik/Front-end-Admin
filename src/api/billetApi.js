@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const billetBaseUrl = 'https://back-end-wxii.onrender.com/api/billet';
+// const billetBaseUrl = 'https://back-end-wxii.onrender.com/api/billet';
+const billetBaseUrl = 'http://localhost:5000/api/billet';
+
 
 const billetApi = {
     getBilletByEvent: async (id) => {

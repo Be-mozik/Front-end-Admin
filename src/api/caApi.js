@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const caBaseUrl = 'https://back-end-wxii.onrender.com/api/ca';
+// const caBaseUrl = 'https://back-end-wxii.onrender.com/api/ca';
+const caBaseUrl = 'http://localhost:5000/api/ca';
+
 
 const caApi = {
     getCaSummary: async () => {

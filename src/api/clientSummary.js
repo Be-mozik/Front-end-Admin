@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const clientSBaseUrl = 'https://back-end-wxii.onrender.com/api/clientS';
+// const clientSBaseUrl = 'https://back-end-wxii.onrender.com/api/clientS';
+const clientSBaseUrl = 'http://localhost:5000/api/clientS';
+
 
 const clientSApi = {
 

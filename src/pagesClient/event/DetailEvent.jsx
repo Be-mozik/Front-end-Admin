@@ -102,7 +102,8 @@ const DetailEvent = () => {
             <>
             <div className="event-image-section">
                 <img 
-                    src={`https://back-end-wxii.onrender.com/uploads/${event.imgevenement}`} 
+                    // src={`https://back-end-wxii.onrender.com/uploads/${event.imgevenement}`} 
+                    src={`http://localhost:5000/uploads/${event.imgevenement}`} 
                     alt={event.imgevenement} 
                     className="event-image"
                 />

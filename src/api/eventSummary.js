@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const eventSBaseUrl = 'https://back-end-wxii.onrender.com/api/eventS';
+// const eventSBaseUrl = 'https://back-end-wxii.onrender.com/api/eventS';
+const eventSBaseUrl = 'http://localhost:5000/api/eventS';
+
 
 const eventSApi = {
     getEventS: async () => {

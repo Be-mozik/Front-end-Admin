@@ -196,7 +196,10 @@
                                 <>
                             <div className="bloc-event1">
                                 <div className="place-img" key="lol">
-                                    <img src={`https://back-end-wxii.onrender.com/uploads/${event.imgevenement}`} alt={`${event.imagevenement}`}/>
+                                    <img 
+                                    // src={`https://back-end-wxii.onrender.com/uploads/${event.imgevenement}`}
+                                    src={`http://localhost:5000/uploads/${event.imgevenement}`}
+                                    alt={`${event.imagevenement}`}/>
                                 </div>
                             </div>
                                 <div className="bloc-event2">

@@ -1,9 +1,12 @@
 import axios from "axios";
 
-const eventBaseUrl = 'https://back-end-wxii.onrender.com/api/event';
+// const eventBaseUrl = 'https://back-end-wxii.onrender.com/api/event';
+const eventBaseUrl = 'http://localhost:5000/api/event';
+
 
 const token = localStorage.getItem('token');
-const tokenClient = localStorage.getItem('tokenClient');
+console.log(token);
+
 const eventApi = {
     creerEvent: async (data) =>{
         try {

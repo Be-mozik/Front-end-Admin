@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const infoBaseUrl = 'https://back-end-wxii.onrender.com/api/info';
+// const infoBaseUrl = 'https://back-end-wxii.onrender.com/api/info';
+const infoBaseUrl = 'http://localhost:5000/api/info';
+
 
 const infoApi = {
     getInfoByEvent: async (id) => {

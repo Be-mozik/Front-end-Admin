@@ -7,8 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import achatApi from '../../api/achatApi';
 import clientApi from '../../api/clientApi';
 
-
-
 const Panier = () => {
     const [cartItems, setCartItems] = useState([]);
     const [user, setUser] = useState(null);
